@@ -2,6 +2,7 @@
   "recommendations": [
     "Vue.volar",
     "tauri-apps.tauri-vscode",
+    "haoziqaq.varlet-vscode-extension",
     "rust-lang.rust-analyzer"
   ]
 }
