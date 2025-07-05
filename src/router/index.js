@@ -5,8 +5,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: () => import('@/views/Home.vue'),
+    },
+    {
+      path: '/autostart',
+      name: 'Autostart',
+      component: () => import('../views/plugins/Autostart.vue'),
+    },
+    {
+      path: '/barcodeScanner',
+      name: 'BarcodeScanner',
+      component: () => import('../views/plugins/BarcodeScanner.vue'),
     },
   ],
 })
