@@ -1,22 +1,7 @@
 <script setup>
 import { StyleProvider, Themes } from '@varlet/ui'
 import { Locale } from '@varlet/ui'
-import { ref } from "vue";
-
-const plugins = ref([
-  {
-    title: "Autostart",
-    description: "Automatically launch your application at system startup.",
-    url: "/autostart",
-    platform: ['windows', 'linux', 'macos'],
-  },
-  {
-    title: "Barcode Scanner",
-    description: "Allows your mobile application to use the camera to scan QR codes, EAN-13 and other kinds of barcodes.",
-    url: "/barcodeScanner",
-    platform: ['android', 'ios'],
-  },
-]);
+import Recipes from '@/router/Recipes'
 </script>
 
 <template>
@@ -53,8 +38,8 @@ const plugins = ref([
       </var-menu>
     </template>
   </var-app-bar>
-  <var-cell v-for="item of plugins" @click="$router.push(item.url)" :title="item.title" :description="item.description"
-    :border="true">
+  <var-cell v-for="item of Recipes" @click="$router.push(item.path)" :title="item.name"
+    :description="item.meta.description" :border="true">
     <template #extra>
       <var-icon name="chevron-right" />
     </template>

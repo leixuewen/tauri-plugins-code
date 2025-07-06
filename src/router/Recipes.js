@@ -1,0 +1,78 @@
+import { type } from '@tauri-apps/plugin-os';
+const osType = type();
+
+export default [
+  {
+    path: '/autostart',
+    name: 'Autostart',
+    component: () => import('../views/plugins/Autostart.vue'),
+    meta: {
+      description: "Automatically launch your application at system startup.",
+      platform: ['windows', 'linux', 'macos'],
+    }
+  },
+  {
+    path: '/barcodeScanner',
+    name: 'Barcode Scanner',
+    component: () => import('../views/plugins/BarcodeScanner.vue'),
+    meta: {
+      description: "Allows your mobile application to use the camera to scan QR codes, EAN-13 and other kinds of barcodes.",
+      platform: ['android', 'ios'],
+    }
+  },
+  // {
+  //   title: "Biometric",
+  //   description: "Prompt the user for biometric authentication on Android and iOS.",
+  //   platform: ['android', 'ios'],
+  // },
+  // {
+  //   title: "Command Line Interface (CLI)",
+  //   description: "Tauri enables your app to have a CLI through clap, a robust command line argument parser. With a simple CLI definition in your tauri.conf.json file, you can define your interface and read its argument matches map on JavaScript and/or Rust.",
+  //   platform: ['windows', 'linux', 'macos'],
+  // },
+  // {
+  //   title: "Clipboard",
+  //   description: "Read and write to the system clipboard using the clipboard plugin.",
+  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+  // },
+  // {
+  //   title: "Deep Linking",
+  //   description: "Set your Tauri application as the default handler for an URL.",
+  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+  // },
+  // {
+  //   title: "Dialog",
+  //   description: "Native system dialogs for opening and saving files along with message dialogs.",
+  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+  // },
+  // {
+  //   title: "File System",
+  //   description: "Access the file system.",
+  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+  // },
+  // {
+  //   title: "Global Shortcut",
+  //   description: "Register global shortcuts.",
+  //   platform: ['windows', 'linux', 'macos'],
+  // },
+  // {
+  //   title: "HTTP Client",
+  //   description: "Make HTTP requests with the http plugin.",
+  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+  // },
+  // {
+  //   title: "Localhost",
+  //   description: "Expose your app’s assets through a localhost server instead of the default custom protocol.",
+  //   platform: ['windows', 'linux', 'macos'],
+  // },
+  // {
+  //   title: "Logging",
+  //   description: "Configurable logging for your Tauri app.",
+  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+  // },
+  // {
+  //   title: "NFC",
+  //   description: "Read and write NFC tags on Android and iOS.",
+  //   platform: ['android', 'ios'],
+  // },
+].filter(f => f.meta.platform.includes(osType))
