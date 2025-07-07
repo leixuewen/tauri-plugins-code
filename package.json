@@ -22,6 +22,7 @@
     "@tauri-apps/api": "^2.6.0",
     "@tauri-apps/plugin-autostart": "^2.5.0",
     "@tauri-apps/plugin-barcode-scanner": "^2.3.0",
+    "@tauri-apps/plugin-biometric": "^2.3.0",
     "@tauri-apps/plugin-opener": "^2.4.0",
     "@tauri-apps/plugin-os": "^2.3.0",
     "@varlet/ui": "^3.11.0",

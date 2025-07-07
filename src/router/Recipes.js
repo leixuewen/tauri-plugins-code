@@ -20,11 +20,15 @@ export default [
       platform: ['android', 'ios'],
     }
   },
-  // {
-  //   title: "Biometric",
-  //   description: "Prompt the user for biometric authentication on Android and iOS.",
-  //   platform: ['android', 'ios'],
-  // },
+  {
+    path: '/biometric',
+    name: "Biometric",
+    component: () => import('../views/plugins/Biometric.vue'),
+    meta: {
+      description: "Prompt the user for biometric authentication on Android and iOS.",
+      platform: ['android', 'ios'],
+    }
+  },
   // {
   //   title: "Command Line Interface (CLI)",
   //   description: "Tauri enables your app to have a CLI through clap, a robust command line argument parser. With a simple CLI definition in your tauri.conf.json file, you can define your interface and read its argument matches map on JavaScript and/or Rust.",

@@ -13,9 +13,13 @@ pub fn run() {
                 tauri_plugin_autostart::MacosLauncher::LaunchAgent,
                 Some(vec!["--flag1", "--flag2"]), /* 传递给应用程序的任意数量的参数 */
             ));
-            
+
             #[cfg(mobile)]
-            let _ = _app.handle().plugin(tauri_plugin_barcode_scanner::init());
+            {
+                let handle = _app.handle();
+                let _ = handle.plugin(tauri_plugin_barcode_scanner::init());
+                let _ = handle.plugin(tauri_plugin_biometric::init());
+            }
 
             Ok(())
         })
