@@ -29,11 +29,15 @@ export default [
       platform: ['android', 'ios'],
     }
   },
-  // {
-  //   title: "Command Line Interface (CLI)",
-  //   description: "Tauri enables your app to have a CLI through clap, a robust command line argument parser. With a simple CLI definition in your tauri.conf.json file, you can define your interface and read its argument matches map on JavaScript and/or Rust.",
-  //   platform: ['windows', 'linux', 'macos'],
-  // },
+  {
+    path: '/cli',
+    name: "Command Line Interface (CLI)",
+    component: () => import('../views/plugins/CLI.vue'),
+    meta: {
+      description: "Tauri enables your app to have a CLI through clap, a robust command line argument parser. With a simple CLI definition in your tauri.conf.json file, you can define your interface and read its argument matches map on JavaScript and/or Rust.",
+      platform: ['windows', 'linux', 'macos'],
+    }
+  },
   // {
   //   title: "Clipboard",
   //   description: "Read and write to the system clipboard using the clipboard plugin.",

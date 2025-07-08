@@ -7,16 +7,19 @@ fn greet(name: &str) -> String {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .setup(|_app| {
+        .setup(|app| {
+            let handle = app.handle();
             #[cfg(desktop)]
-            let _ = _app.handle().plugin(tauri_plugin_autostart::init(
-                tauri_plugin_autostart::MacosLauncher::LaunchAgent,
-                Some(vec!["--flag1", "--flag2"]), /* 传递给应用程序的任意数量的参数 */
-            ));
+            {
+                let _ = handle.plugin(tauri_plugin_autostart::init(
+                    tauri_plugin_autostart::MacosLauncher::LaunchAgent,
+                    Some(vec!["--flag1", "--flag2"]), /* 传递给应用程序的任意数量的参数 */
+                ));
+                let _ = handle.plugin(tauri_plugin_cli::init());
+            }
 
             #[cfg(mobile)]
             {
-                let handle = _app.handle();
                 let _ = handle.plugin(tauri_plugin_barcode_scanner::init());
                 let _ = handle.plugin(tauri_plugin_biometric::init());
             }
