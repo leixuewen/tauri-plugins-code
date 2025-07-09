@@ -37,7 +37,7 @@ getMatches().then(res => {
 </script>
 <template>
     <AppBar />
-    <p>{{ args }}</p>
+    <var-cell>{{ args }}</var-cell>
     <var-card title="Run Arge Example:">
         <var-cell :icon="argsVale.positional ? 'checkbox-marked' : 'checkbox-blank-outline'"
             description="/your-app tauri.txt dest.txt" title="Positional Arguments:" />
@@ -47,7 +47,7 @@ getMatches().then(res => {
             description="/your-app -v -v -v 📌 ./your-app --verbose --verbose --verbose 📌 ./your-app -vvv"
             title="Flag Arguments:" />
     </var-card>
-    <p>{{ subcommand }}</p>
+    <var-cell>{{ subcommand }}</var-cell>
     <var-card title="Run Subcommand Arge Example:">
         <var-cell :icon="subcommandArgs.run.debug ? 'checkbox-marked' : 'checkbox-blank-outline'"
             title="/your-app run --debug" />

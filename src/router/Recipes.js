@@ -38,11 +38,15 @@ export default [
       platform: ['windows', 'linux', 'macos'],
     }
   },
-  // {
-  //   title: "Clipboard",
-  //   description: "Read and write to the system clipboard using the clipboard plugin.",
-  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
-  // },
+  {
+    path: '/clipboard',
+    name: "Clipboard",
+    component: () => import('../views/plugins/Clipboard.vue'),
+    meta: {
+      description: "Read and write to the system clipboard using the clipboard plugin.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
   // {
   //   title: "Deep Linking",
   //   description: "Set your Tauri application as the default handler for an URL.",
