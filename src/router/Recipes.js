@@ -52,11 +52,15 @@ export default [
   //   description: "Set your Tauri application as the default handler for an URL.",
   //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
   // },
-  // {
-  //   title: "Dialog",
-  //   description: "Native system dialogs for opening and saving files along with message dialogs.",
-  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
-  // },
+  {
+    path: '/dialog',
+    name: "Dialog",
+    component: () => import('../views/plugins/Dialog.vue'),
+    meta: {
+      description: "Native system dialogs for opening and saving files along with message dialogs.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
   // {
   //   title: "File System",
   //   description: "Access the file system.",
