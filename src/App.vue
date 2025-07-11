@@ -1,5 +1,17 @@
+<script setup>
+import AppBar from '@/components/AppBar.vue';
+</script>
 <template>
-  <var-paper id="var-paper" style="height: calc(100vh - 16px);">
+  <AppBar />
+  <var-paper radius="0" id="var-paper">
     <RouterView />
   </var-paper>
 </template>
+<style>
+#var-paper {
+  height: calc(100vh - 70px);
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>

@@ -1,5 +1,4 @@
 <script setup>
-import AppBar from '@/components/AppBar.vue';
 import { writeText, readText, clear } from '@tauri-apps/plugin-clipboard-manager';
 import { Snackbar } from '@varlet/ui';
 import "@varlet/ui/es/snackbar/style";
@@ -35,7 +34,6 @@ async function stickup() {
 
 </script>
 <template>
-    <AppBar />
     <var-input textarea v-model="txt" />
     <var-space justify="center">
         <var-button type="info" @click="clern">clern</var-button>

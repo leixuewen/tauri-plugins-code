@@ -1,5 +1,4 @@
 <script setup>
-import AppBar from '@/components/AppBar.vue';
 import { getMatches } from '@tauri-apps/plugin-cli';
 import { ref } from 'vue';
 
@@ -36,7 +35,6 @@ getMatches().then(res => {
 });
 </script>
 <template>
-    <AppBar />
     <var-cell>{{ args }}</var-cell>
     <var-card title="Run Arge Example:">
         <var-cell :icon="argsVale.positional ? 'checkbox-marked' : 'checkbox-blank-outline'"

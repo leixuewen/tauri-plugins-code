@@ -1,5 +1,4 @@
 <script setup>
-import AppBar from '@/components/AppBar.vue';
 import { ask, confirm, message, open, save } from '@tauri-apps/plugin-dialog';
 import { ref } from 'vue';
 
@@ -91,7 +90,6 @@ function saveFun() {
 }
 </script>
 <template>
-    <AppBar />
     <var-button type="primary" block @click="askFun">ask : {{ askBool }}</var-button>
     <var-button type="primary" block @click="confirmFun">confirm : {{ confirmBool }}</var-button>
     <var-button type="warning" block @click="messageFun">message</var-button>

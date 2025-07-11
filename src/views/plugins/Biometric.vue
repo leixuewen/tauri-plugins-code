@@ -1,5 +1,4 @@
 <script setup>
-import AppBar from '@/components/AppBar.vue';
 import { checkStatus, authenticate } from '@tauri-apps/plugin-biometric';
 import { ref, onBeforeMount } from 'vue';
 import { Snackbar } from '@varlet/ui';
@@ -45,7 +44,6 @@ async function biometric() {
 
 </script>
 <template>
-    <AppBar />
     <var-space justify="center">
         <var-icon size="99" name="account-circle-outline" />
     </var-space>

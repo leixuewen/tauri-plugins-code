@@ -1,5 +1,4 @@
 <script setup>
-import AppBar from '@/components/AppBar.vue';
 import { scan, openAppSettings, checkPermissions, requestPermissions, cancel, Format } from '@tauri-apps/plugin-barcode-scanner';
 import { ref, onUnmounted } from "vue";
 
@@ -57,7 +56,6 @@ onUnmounted(() => {
 });
 </script>
 <template>
-    <AppBar />
     <div style="height: 50%;border: dashed red;">
         <h1>{{ Scanned.content }}</h1>
         <h2>{{ Scanned.format }}</h2>
