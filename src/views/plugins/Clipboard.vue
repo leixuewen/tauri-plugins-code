@@ -1,7 +1,6 @@
 <script setup>
 import { writeText, readText, clear } from '@tauri-apps/plugin-clipboard-manager';
 import { Snackbar } from '@varlet/ui';
-import "@varlet/ui/es/snackbar/style";
 import { ref } from 'vue';
 
 const txt = ref("Clipboard textarea");

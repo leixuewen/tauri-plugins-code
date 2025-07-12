@@ -6,11 +6,11 @@ import { Locale } from '@varlet/ui';
     <var-app-bar :title="$route.name" title-position="center">
         <template #left>
             <var-button v-if="$route.fullPath != '/'" @click="$router.back()" text-color="#fff" round text>
-                <var-icon name="chevron-left" />
+                <var-icon size="32" name="chevron-left" />
             </var-button>
             <var-link v-else href="https://github.com/leixuewen/tauri-plugins-code" target="_blank" underline="none">
                 <var-button text-color="#fff" round text>
-                    <var-icon name="github" />
+                    <var-icon size="32" name="github" />
                 </var-button>
             </var-link>
         </template>

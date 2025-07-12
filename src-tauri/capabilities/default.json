@@ -11,6 +11,99 @@
     "clipboard-manager:allow-clear",
     "clipboard-manager:allow-read-text",
     "clipboard-manager:allow-write-text",
-    "dialog:default"
+    "dialog:default",
+    "fs:allow-create",
+    "fs:allow-write-text-file",
+    "fs:allow-read-text-file",
+    "fs:allow-mkdir",
+    "fs:allow-exists",
+    "fs:allow-write-file",
+    "fs:allow-fstat",
+    "fs:allow-open",
+    "fs:allow-read",
+    "fs:allow-write",
+    "fs:allow-read-text-file-lines",
+    "fs:allow-read-file",
+    "fs:allow-remove",
+    "fs:allow-copy-file",
+    "fs:allow-stat",
+    "fs:allow-rename",
+    "fs:allow-truncate",
+    "fs:allow-read-dir",
+    "fs:allow-watch",
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        {
+          "path": "$APPCONFIG/**/*"
+        },
+        {
+          "path": "$APPDATA/**/*"
+        },
+        {
+          "path": "$APPLOCALDATA/**/*"
+        },
+        {
+          "path": "$APPCACHE/**/*"
+        },
+        {
+          "path": "$APPLOG/**/*"
+        },
+        {
+          "path": "$AUDIO/**/*"
+        },
+        {
+          "path": "$CACHE/**/*"
+        },
+        {
+          "path": "$CONFIG/**/*"
+        },
+        {
+          "path": "$DATA/**/*"
+        },
+        {
+          "path": "$LOCALDATA/**/*"
+        },
+        {
+          "path": "$DESKTOP/**/*"
+        },
+        {
+          "path": "$DOCUMENT/**/*"
+        },
+        {
+          "path": "$DOWNLOAD/**/*"
+        },
+        {
+          "path": "$EXE/**/*"
+        },
+        {
+          "path": "$FONT/**/*"
+        },
+        {
+          "path": "$HOME/**/*"
+        },
+        {
+          "path": "$PICTURE/**/*"
+        },
+        {
+          "path": "$PUBLIC/**/*"
+        },
+        {
+          "path": "$RUNTIME/**/*"
+        },
+        {
+          "path": "$TEMPLATE/**/*"
+        },
+        {
+          "path": "$VIDEO/**/*"
+        },
+        {
+          "path": "$RESOURCE/**/*"
+        },
+        {
+          "path": "$TEMP/**/*"
+        }
+      ]
+    }
   ]
 }

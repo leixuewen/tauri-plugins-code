@@ -2,7 +2,6 @@
 import { checkStatus, authenticate } from '@tauri-apps/plugin-biometric';
 import { ref, onBeforeMount } from 'vue';
 import { Snackbar } from '@varlet/ui';
-import "@varlet/ui/es/snackbar/style";
 
 const disabled = ref(false);
 

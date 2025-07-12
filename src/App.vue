@@ -1,5 +1,6 @@
 <script setup>
 import AppBar from '@/components/AppBar.vue';
+import "@varlet/ui/es/snackbar/style";
 </script>
 <template>
   <AppBar />
@@ -9,7 +10,7 @@ import AppBar from '@/components/AppBar.vue';
 </template>
 <style>
 #var-paper {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 54px);
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

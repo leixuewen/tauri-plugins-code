@@ -61,11 +61,15 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
-  // {
-  //   title: "File System",
-  //   description: "Access the file system.",
-  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
-  // },
+  {
+    path: '/fileSystem',
+    name: "File System",
+    component: () => import('../views/plugins/FileSystem.vue'),
+    meta: {
+      description: "Access the file system.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
   // {
   //   title: "Global Shortcut",
   //   description: "Register global shortcuts.",
