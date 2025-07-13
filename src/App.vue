@@ -15,4 +15,8 @@ import "@varlet/ui/es/snackbar/style";
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.var-snackbar__content {
+  word-break: break-word;
+}
 </style>

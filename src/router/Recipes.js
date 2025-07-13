@@ -70,11 +70,15 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
-  // {
-  //   title: "Global Shortcut",
-  //   description: "Register global shortcuts.",
-  //   platform: ['windows', 'linux', 'macos'],
-  // },
+  {
+    path: '/globalShortcut',
+    name: "Global Shortcut",
+    component: () => import('../views/plugins/GlobalShortcut.vue'),
+    meta: {
+      description: "Register global shortcuts.",
+      platform: ['windows', 'linux', 'macos'],
+    }
+  },
   // {
   //   title: "HTTP Client",
   //   description: "Make HTTP requests with the http plugin.",
