@@ -79,11 +79,15 @@ export default [
       platform: ['windows', 'linux', 'macos'],
     }
   },
-  // {
-  //   title: "HTTP Client",
-  //   description: "Make HTTP requests with the http plugin.",
-  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
-  // },
+  {
+    path: '/httpClient',
+    name: "HTTP Client",
+    component: () => import('../views/plugins/HttpClient.vue'),
+    meta: {
+      description: "Make HTTP requests with the http plugin.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
   // {
   //   title: "Localhost",
   //   description: "Expose your app’s assets through a localhost server instead of the default custom protocol.",

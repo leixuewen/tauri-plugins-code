@@ -27,6 +27,7 @@ tauri-plugin-clipboard-manager = "2.3.0"
 tauri-plugin-dialog = "2.3.0"
 # tauri-plugin-fs = "2.4.0"
 tauri-plugin-fs = { version = "2.4.0", features = ["watch"] }
+tauri-plugin-http = "2.5.0"
 
 
 [profile.dev]

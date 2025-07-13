@@ -104,6 +104,19 @@
           "path": "$TEMP/**/*"
         }
       ]
+    },
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://api.ipstack.com"
+        }
+      ],
+      "deny": [
+        {
+          "url": "https://data.fixer.io"
+        }
+      ]
     }
   ]
 }
