@@ -117,6 +117,7 @@
           "url": "https://data.fixer.io"
         }
       ]
-    }
+    },
+    "log:default"
   ]
 }

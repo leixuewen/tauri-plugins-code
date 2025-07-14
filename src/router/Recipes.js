@@ -93,11 +93,15 @@ export default [
   //   description: "Expose your app’s assets through a localhost server instead of the default custom protocol.",
   //   platform: ['windows', 'linux', 'macos'],
   // },
-  // {
-  //   title: "Logging",
-  //   description: "Configurable logging for your Tauri app.",
-  //   platform: ['windows', 'linux', 'macos', 'android', 'ios'],
-  // },
+  {
+    path: '/logging',
+    name: "Logging",
+    component: () => import('../views/plugins/Logging.vue'),
+    meta: {
+      description: "Configurable logging for your Tauri app.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
   // {
   //   title: "NFC",
   //   description: "Read and write NFC tags on Android and iOS.",

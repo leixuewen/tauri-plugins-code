@@ -7,6 +7,20 @@ fn greet(name: &str) -> String {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(
+            tauri_plugin_log::Builder::new()
+                // .max_file_size(50_000)
+                // .rotation_strategy(tauri_plugin_log::RotationStrategy::KeepAll)
+                // Have to add [dependencies] log = "0.4.27"
+                // .level(log::LevelFilter::Info)
+                // .level_for("my_crate_name::commands", log::LevelFilter::Trace)
+                // exclude logs with target `"hyper"`
+                // .filter(|metadata| metadata.target() != "hyper")
+                .target(tauri_plugin_log::Target::new(
+                    tauri_plugin_log::TargetKind::Webview,
+                ))
+                .build(),
+        )
         .setup(|app| {
             let handle = app.handle();
             #[cfg(desktop)]
@@ -16,6 +30,7 @@ pub fn run() {
                     Some(vec!["--flag1", "--flag2"]), /* 传递给应用程序的任意数量的参数 */
                 ));
                 let _ = handle.plugin(tauri_plugin_cli::init());
+                let _ = handle.plugin(tauri_plugin_global_shortcut::Builder::new().build());
             }
 
             #[cfg(mobile)]
@@ -27,7 +42,6 @@ pub fn run() {
             Ok(())
         })
         .plugin(tauri_plugin_http::init())
-        .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_clipboard_manager::init())
