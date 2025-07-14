@@ -102,9 +102,13 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
-  // {
-  //   title: "NFC",
-  //   description: "Read and write NFC tags on Android and iOS.",
-  //   platform: ['android', 'ios'],
-  // },
+  {
+    path: '/nfc',
+    name: "NFC",
+    component: () => import('../views/plugins/NFC.vue'),
+    meta: {
+      description: "Read and write NFC tags on Android and iOS.",
+      platform: ['android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))

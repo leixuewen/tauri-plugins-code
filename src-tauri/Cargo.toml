@@ -49,4 +49,5 @@ tauri-plugin-global-shortcut = "2.3.0"
 [target.'cfg(any(target_os = "android", target_os = "ios"))'.dependencies]
 tauri-plugin-barcode-scanner = "2.3.0"
 tauri-plugin-biometric = "2.3.0"
+tauri-plugin-nfc = "2.3.0"
 
