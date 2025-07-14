@@ -111,4 +111,13 @@ export default [
       platform: ['android', 'ios'],
     }
   },
+  {
+    path: '/notification',
+    name: "notification",
+    component: () => import('../views/plugins/Notification.vue'),
+    meta: {
+      description: "Send native notifications to your user using the notification plugin.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))

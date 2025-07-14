@@ -118,6 +118,8 @@
         }
       ]
     },
-    "log:default"
+    "log:default",
+    "notification:default",
+    "notification:allow-list-channels"
   ]
 }
