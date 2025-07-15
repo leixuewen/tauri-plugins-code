@@ -16,6 +16,7 @@
     "global-shortcut:allow-unregister",
     "global-shortcut:allow-unregister-all",
     "cli:default",
-    "positioner:default"
+    "positioner:default",
+    "process:default"
   ]
 }

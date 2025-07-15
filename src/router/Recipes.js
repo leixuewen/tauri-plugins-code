@@ -147,4 +147,13 @@ export default [
       platform: ['windows', 'linux', 'macos'],
     }
   },
+  {
+    path: '/process',
+    name: "Process",
+    component: () => import('../views/plugins/Process.vue'),
+    meta: {
+      description: "This plugin provides APIs to access the current process.",
+      platform: ['windows', 'linux', 'macos'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
