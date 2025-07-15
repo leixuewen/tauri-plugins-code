@@ -13,6 +13,7 @@ import {
 } from '@tauri-apps/plugin-notification';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { type } from '@tauri-apps/plugin-os';
+import { Snackbar } from '@varlet/ui';
 const osType = type();
 
 const permissionGranted = ref(false);
@@ -31,7 +32,11 @@ async function requestPermissionFun() {
 
 async function sendNotificationFun(channelId = '') {
     if (!permissionGranted.value) await requestPermissionFun();
-    sendNotification({ title: 'Tauri' + channelId, body: 'Tauri is awesome!' + channelId, channelId });
+    let options = { title: 'Tauri' + channelId, body: 'Tauri is awesome!' + channelId, channelId }
+    if (!channelId) {
+        delete options.channelId
+    }
+    sendNotification(options);
 }
 
 let pluginListener;
@@ -55,15 +60,19 @@ async function registerActionTypesFun() {
             ],
         },
     ]);
-    if (pluginListener) {
-        pluginListener = await onAction((notification) => {
-            console.log('Action performed:', notification);
-        });
+    if (!pluginListener) {
+        try {
+            pluginListener = await onAction((notification) => {
+                console.log('Action performed:', notification);
+            });
+        } catch (err) {
+            Snackbar.error(err);
+        }
     }
 
 }
 onUnmounted(() => {
-    if (pluginListener.plugin) pluginListener.unregister();
+    if (pluginListener?.plugin) pluginListener.unregister();
 });
 
 function attachmentsFun() {
@@ -90,6 +99,8 @@ function createChannelFun() {
         lightColor: '#ff0000',
         vibration: true,
         sound: 'notification_sound',
+    }).catch(err => {
+        Snackbar.error(err);
     });
 }
 

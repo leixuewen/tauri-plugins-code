@@ -120,4 +120,13 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
+  {
+    path: '/opener',
+    name: "opener",
+    component: () => import('../views/plugins/Opener.vue'),
+    meta: {
+      description: "This plugin allows you to open files and URLs in a specified, or the default, application. It also supports “revealing” files in the system’s file explorer.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
