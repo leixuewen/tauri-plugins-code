@@ -7,9 +7,6 @@ fn greet(name: &str) -> String {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .plugin(tauri_plugin_shell::init())
-        .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_positioner::init())
         .plugin(tauri_plugin_notification::init())
         .plugin(
             tauri_plugin_log::Builder::new()
@@ -35,6 +32,10 @@ pub fn run() {
                 ));
                 let _ = handle.plugin(tauri_plugin_cli::init());
                 let _ = handle.plugin(tauri_plugin_global_shortcut::Builder::new().build());
+                let _ = handle.plugin(tauri_plugin_positioner::init());
+                let _ = handle.plugin(tauri_plugin_process::init());
+                let _ = handle.plugin(tauri_plugin_shell::init());
+                let _ = handle.plugin(tauri_plugin_single_instance::init(|_app, _args, _cwd| {}));
             }
 
             #[cfg(mobile)]
