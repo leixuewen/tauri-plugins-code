@@ -138,4 +138,13 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
+  {
+    path: '/positioner',
+    name: "Positioner",
+    component: () => import('../views/plugins/Positioner.vue'),
+    meta: {
+      description: "Position your windows at well-known locations.",
+      platform: ['windows', 'linux', 'macos'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
