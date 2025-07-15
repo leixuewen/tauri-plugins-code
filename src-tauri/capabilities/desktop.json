@@ -17,6 +17,20 @@
     "global-shortcut:allow-unregister-all",
     "cli:default",
     "positioner:default",
-    "process:default"
+    "process:default",
+    "shell:default",
+    "shell:allow-spawn",
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        {
+          "name": "run-git",
+          "cmd": "git",
+          "args": [
+            "-v"
+          ]
+        }
+      ]
+    }
   ]
 }

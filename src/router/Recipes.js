@@ -156,4 +156,13 @@ export default [
       platform: ['windows', 'linux', 'macos'],
     }
   },
+  {
+    path: '/shell',
+    name: "Shell",
+    component: () => import('../views/plugins/Shell.vue'),
+    meta: {
+      description: "Access the system shell. Allows you to spawn child processes.",
+      platform: ['windows', 'linux', 'macos'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
