@@ -129,4 +129,13 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
+  {
+    path: '/osInfo',
+    name: "OsInformation",
+    component: () => import('../views/plugins/OsInfo.vue'),
+    meta: {
+      description: "Read information about the operating system using the OS Information plugin.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))

@@ -197,6 +197,8 @@
           "path": "$TEMP/**/*"
         }
       ]
-    }
+    },
+    "os:allow-hostname",
+    "os:default"
   ]
 }
