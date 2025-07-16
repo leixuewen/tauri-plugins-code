@@ -33,6 +33,7 @@ tauri-plugin-notification = "2.3.0"
 tauri-plugin-process = "2.3.0"
 tauri-plugin-shell = "2.3.0"
 tauri-plugin-sql = { version = "2.3.0", features = ["sqlite"] }
+tauri-plugin-store = "2.3.0"
 
 
 [profile.dev]

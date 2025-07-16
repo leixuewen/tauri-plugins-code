@@ -201,6 +201,7 @@
     "os:allow-hostname",
     "os:default",
     "sql:allow-execute",
-    "sql:default"
+    "sql:default",
+    "store:default"
   ]
 }

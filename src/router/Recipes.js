@@ -174,4 +174,13 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
+  {
+    path: '/store',
+    name: "Store",
+    component: () => import('../views/plugins/Store.vue'),
+    meta: {
+      description: "This plugin provides a persistent key-value store. This is one of many options to handle state in your application.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
