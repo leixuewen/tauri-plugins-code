@@ -199,6 +199,8 @@
       ]
     },
     "os:allow-hostname",
-    "os:default"
+    "os:default",
+    "sql:allow-execute",
+    "sql:default"
   ]
 }

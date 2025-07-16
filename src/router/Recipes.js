@@ -165,4 +165,13 @@ export default [
       platform: ['windows', 'linux', 'macos'],
     }
   },
+  {
+    path: '/sql',
+    name: "SQL",
+    component: () => import('../views/plugins/SQL.vue'),
+    meta: {
+      description: "Plugin providing an interface for the frontend to communicate with SQL databases through sqlx. It supports the SQLite, MySQL and PostgreSQL drivers, enabled by a Cargo feature.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
