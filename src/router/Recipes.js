@@ -210,4 +210,13 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
+  {
+    path: '/windowState',
+    name: "WindowState",
+    component: () => import('../views/plugins/WindowState.vue'),
+    meta: {
+      description: "Save window positions and sizes and restore them when the app is reopened.",
+      platform: ['windows', 'linux', 'macos'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
