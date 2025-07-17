@@ -42,6 +42,7 @@ pub fn run() {
                 let _ = handle.plugin(tauri_plugin_process::init());
                 let _ = handle.plugin(tauri_plugin_shell::init());
                 let _ = handle.plugin(tauri_plugin_single_instance::init(|_app, _args, _cwd| {}));
+                let _ = handle.plugin(tauri_plugin_updater::Builder::new().build());
             }
 
             #[cfg(mobile)]

@@ -22,6 +22,16 @@
     }
   },
   "plugins": {
+    "updater": {
+      "windows": {
+        "installMode": "passive"
+      },
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc2OUQzQzU5MTc3QTAxOTgKUldTWUFYb1hXVHlkZGpjM1dKYW82S2VYL0JhakdmbFk2U09USnlIZUlKeXV3TGxlUlZGUzZFQUMK",
+      "dangerousInsecureTransportProtocol": true,
+      "endpoints": [
+        "https://github.com/leixuewen/tauri-plugins-code/releases/latest/download/latest.json"
+      ]
+    },
     "cli": {
       "description": "Tauri CLI Plugin Example",
       "args": [
@@ -70,6 +80,7 @@
   },
   "bundle": {
     "active": true,
+    "createUpdaterArtifacts": true,
     "targets": "all",
     "icon": [
       "icons/32x32.png",
