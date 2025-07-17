@@ -192,4 +192,13 @@ export default [
       platform: ['windows', 'linux', 'macos'],
     }
   },
+  {
+    path: '/upload',
+    name: "Upload",
+    component: () => import('../views/plugins/Upload.vue'),
+    meta: {
+      description: "Upload files from disk to a remote server over HTTP. Download files from a remote HTTP server to disk.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))

@@ -202,6 +202,7 @@
     "os:default",
     "sql:allow-execute",
     "sql:default",
-    "store:default"
+    "store:default",
+    "upload:default"
   ]
 }
