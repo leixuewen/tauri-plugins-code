@@ -203,6 +203,7 @@
     "sql:allow-execute",
     "sql:default",
     "store:default",
-    "upload:default"
+    "upload:default",
+    "websocket:default"
   ]
 }

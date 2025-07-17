@@ -35,6 +35,7 @@ tauri-plugin-shell = "2.3.0"
 tauri-plugin-sql = { version = "2.3.0", features = ["sqlite"] }
 tauri-plugin-store = "2.3.0"
 tauri-plugin-upload = "2.3.0"
+tauri-plugin-websocket = "2.4.0"
 
 
 [profile.dev]

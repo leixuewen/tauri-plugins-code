@@ -201,4 +201,13 @@ export default [
       platform: ['windows', 'linux', 'macos', 'android', 'ios'],
     }
   },
+  {
+    path: '/websocket',
+    name: "Websocket",
+    component: () => import('../views/plugins/Websocket.vue'),
+    meta: {
+      description: "Open a WebSocket connection using a Rust client in JavaScript.",
+      platform: ['windows', 'linux', 'macos', 'android', 'ios'],
+    }
+  },
 ].filter(f => f.meta.platform.includes(osType))
