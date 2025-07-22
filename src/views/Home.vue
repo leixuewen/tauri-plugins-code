@@ -1,9 +1,9 @@
 <script setup>
-import Recipes from '@/router/Recipes'
+import plugins from '@/router/plugins'
 </script>
 
 <template>
-  <var-cell v-for="item of Recipes" @click="$router.push(item.path)" :title="item.name"
+  <var-cell v-for="item of plugins" @click="$router.push(item.path)" :title="item.name"
     :description="item.meta.description" :border="true">
     <template #extra>
       <var-icon name="chevron-right" />
