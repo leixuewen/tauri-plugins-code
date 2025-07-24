@@ -54,6 +54,7 @@ pub fn run() {
                 let _ = handle.plugin(tauri_plugin_biometric::init());
                 let _ = handle.plugin(tauri_plugin_nfc::init());
                 let _ = handle.plugin(tauri_plugin_geolocation::init());
+                let _ = handle.plugin(tauri_plugin_haptics::init());
             }
 
             Ok(())

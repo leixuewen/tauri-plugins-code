@@ -31,4 +31,12 @@ export default [
             description: "Get and track current device positon",
         }
     },
+    {
+        path: '/haptics',
+        name: "Haptics",
+        component: () => import('@/views/plugins/Haptics.vue'),
+        meta: {
+            description: "Haptic feedback and vibrations on Android and iOS",
+        }
+    },
 ]
