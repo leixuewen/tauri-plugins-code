@@ -23,4 +23,12 @@ export default [
             description: "Read and write NFC tags on Android and iOS.",
         }
     },
+    {
+        path: '/geolocation',
+        name: "Geolocation",
+        component: () => import('@/views/plugins/Geolocation.vue'),
+        meta: {
+            description: "Get and track current device positon",
+        }
+    },
 ]

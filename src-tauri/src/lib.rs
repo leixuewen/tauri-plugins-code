@@ -53,6 +53,7 @@ pub fn run() {
                 let _ = handle.plugin(tauri_plugin_barcode_scanner::init());
                 let _ = handle.plugin(tauri_plugin_biometric::init());
                 let _ = handle.plugin(tauri_plugin_nfc::init());
+                let _ = handle.plugin(tauri_plugin_geolocation::init());
             }
 
             Ok(())

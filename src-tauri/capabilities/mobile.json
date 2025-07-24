@@ -8,6 +8,12 @@
     "main"
   ],
   "permissions": [
+    "geolocation:allow-clear-watch",
+    "geolocation:allow-clear-permissions",
+    "geolocation:allow-check-permissions",
+    "geolocation:allow-request-permissions",
+    "geolocation:allow-get-current-position",
+    "geolocation:allow-watch-position",
     "barcode-scanner:default",
     "biometric:default",
     "nfc:default"

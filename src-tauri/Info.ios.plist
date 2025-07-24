@@ -13,4 +13,8 @@
     <key>NFCReaderUsageDescription</key>
     <string>Read and write various NFC tags</string>
   </dict>
+  <dict>
+    <key>NSLocationWhenInUseDescription</key>
+    <string>Get and track current device positon</string>
+  </dict>
 </plist>

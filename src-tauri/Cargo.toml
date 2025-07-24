@@ -61,4 +61,5 @@ tauri-plugin-window-state = "2.4.0"
 tauri-plugin-barcode-scanner = "2.4.0"
 tauri-plugin-biometric = "2.3.0"
 tauri-plugin-nfc = "2.3.0"
+tauri-plugin-geolocation = "2.3.0"
 
