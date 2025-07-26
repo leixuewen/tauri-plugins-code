@@ -7,6 +7,11 @@
   ],
   "permissions": [
     "core:default",
+    "core:app:allow-fetch-data-store-identifiers",
+    "core:app:allow-default-window-icon",
+    "core:app:allow-app-hide",
+    "core:app:allow-app-show",
+    "core:app:allow-set-app-theme",
     "opener:default",
     "clipboard-manager:allow-clear",
     "clipboard-manager:allow-read-text",

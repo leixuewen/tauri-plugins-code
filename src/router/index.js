@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import plugins from '@/router/plugins'
+import plugins from '@/router/plugins';
+import tauriApi from '@/router/tauri-api';
 
 // // Automatically import files in the specified directory as pages
 // let routes = import.meta.glob('../views/**/*.vue');
@@ -25,6 +26,7 @@ const router = createRouter({
       component: () => import('@/views/Home.vue'),
     },
     ...plugins,
+    ...tauriApi,
   ],
 })
 
