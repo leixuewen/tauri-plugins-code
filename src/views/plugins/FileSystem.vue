@@ -1,74 +1,10 @@
 <script setup>
 import { create, writeTextFile, writeFile, readFile, watchImmediate, watch, readDir, truncate, stat, remove, rename, copyFile, readTextFileLines, mkdir, exists, open, readTextFile, BaseDirectory } from '@tauri-apps/plugin-fs';
-import { appConfigDir, appDataDir, appLocalDataDir, appCacheDir, appLogDir, audioDir, cacheDir, configDir, dataDir, desktopDir, documentDir, downloadDir, executableDir, fontDir, homeDir, localDataDir, pictureDir, publicDir, resourceDir, resolveResource, runtimeDir, templateDir, videoDir, sep, delimiter, resolve, tempDir } from '@tauri-apps/api/path';
-import { onMounted, onUnmounted, ref } from 'vue';
-import { type } from '@tauri-apps/plugin-os';
+import { onUnmounted, ref } from 'vue';
 import { Snackbar } from '@varlet/ui';
+import TauriApiPath from "@/views/tauri-api/Path.vue";
 
-const osType = type();
 const expand = ref(false);
-
-const dir = ref({
-    appConfigDir: "",
-    appDataDir: "",
-    appLocalDataDir: "",
-    appCacheDir: "",
-    appLogDir: "",
-    audioDir: "",
-    cacheDir: "",
-    configDir: "",
-    dataDir: "",
-    desktopDir: "",
-    documentDir: "",
-    downloadDir: "",
-    executableDir: "",
-    fontDir: "",
-    homeDir: "",
-    localDataDir: "",
-    pictureDir: "",
-    publicDir: "",
-    resourceDir: "",
-    resolveResource: "",
-    runtimeDir: "",
-    templateDir: "",
-    videoDir: "",
-    sep: "",
-    delimiter: "",
-    resolve: "",
-    tempDir: "",
-});
-
-
-onMounted(async () => {
-    dir.value.appConfigDir = await appConfigDir();
-    dir.value.appDataDir = await appDataDir();
-    dir.value.appLocalDataDir = await appLocalDataDir();
-    dir.value.appCacheDir = await appCacheDir();
-    dir.value.appLogDir = await appLogDir();
-    dir.value.audioDir = await audioDir();
-    dir.value.cacheDir = await cacheDir();
-    dir.value.configDir = await configDir();
-    dir.value.dataDir = await dataDir();
-    dir.value.desktopDir = !['android'].includes(osType) ? await desktopDir() : "";
-    dir.value.documentDir = await documentDir();
-    dir.value.downloadDir = await downloadDir();
-    dir.value.executableDir = ['linux'].includes(osType) ? await executableDir() : "";
-    dir.value.fontDir = !['windows', 'android'].includes(osType) ? await fontDir() : "";
-    dir.value.homeDir = await homeDir();
-    dir.value.localDataDir = await localDataDir();
-    dir.value.pictureDir = await pictureDir();
-    dir.value.publicDir = await publicDir();
-    dir.value.resourceDir = await resourceDir();
-    dir.value.resolveResource = await resolveResource();
-    dir.value.runtimeDir = ['linux'].includes(osType) ? await runtimeDir() : "";
-    dir.value.templateDir = !['macos', 'android'].includes(osType) ? await templateDir() : "";
-    dir.value.videoDir = await videoDir();
-    dir.value.sep = await sep();
-    dir.value.delimiter = await delimiter();
-    dir.value.resolve = await resolve();
-    dir.value.tempDir = await tempDir();
-});
-
 const path = ref('config.json');
 const baseDir = ref(BaseDirectory.AppConfig);
 
@@ -364,8 +300,7 @@ onUnmounted(() => {
     <var-button size="large" text type="primary">DIR</var-button>
     <var-switch v-model="expand" />
     <var-collapse-transition :expand="expand">
-        <var-card style="overflow-wrap: break-word" v-for="item in Object.keys(dir)" :key="item" :title="item"
-            :description="dir[item] || 'Not supported'" variant="filled" />
+        <TauriApiPath />
     </var-collapse-transition>
 
     <var-card title="Files">

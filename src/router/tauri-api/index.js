@@ -19,4 +19,14 @@ export default [
         name: "Event",
         component: () => import('@/views/tauri-api/Event.vue'),
     },
+    {
+        path: '/path',
+        name: "Path",
+        component: () => import('@/views/tauri-api/Path.vue'),
+    },
+    {
+        path: '/tray',
+        name: "Tray",
+        component: () => import('@/views/tauri-api/Tray.vue'),
+    },
 ].map(v => { v.meta = { description: 'tauri-api' + v.path }; return v; })
