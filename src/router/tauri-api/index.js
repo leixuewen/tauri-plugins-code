@@ -29,4 +29,19 @@ export default [
         name: "Tray",
         component: () => import('@/views/tauri-api/Tray.vue'),
     },
+    {
+        path: '/webview',
+        name: "Webview",
+        component: () => import('@/views/tauri-api/Webview.vue'),
+    },
+    {
+        path: '/webviewWindow',
+        name: "WebviewWindow",
+        component: () => import('@/views/tauri-api/WebviewWindow.vue'),
+    },
+    {
+        path: '/window',
+        name: "Window",
+        component: () => import('@/views/tauri-api/Window.vue'),
+    },
 ].map(v => { v.meta = { description: 'tauri-api' + v.path }; return v; })
