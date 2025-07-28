@@ -7,6 +7,7 @@ import {
 } from '@tauri-apps/api/menu';
 import { onBeforeMount, onUnmounted, ref } from 'vue';
 import { Image } from '@tauri-apps/api/image';
+import { resolveResource } from '@tauri-apps/api/path';
 
 onBeforeMount(() => {
     Menu.new().then(val => val.setAsAppMenu());;
@@ -193,9 +194,9 @@ async function CheckMenuItemFun() {
         },
     });
 
-    // 从路径加载图标 前端项目路径
-    const icon = await Image.fromPath('../public/vue.png');
-    const icon2 = await Image.fromPath('../public/vite.png');
+    // 从路径加载图标
+    const icon = await Image.fromPath(await resolveResource('resources/vue.png'));
+    const icon2 = await Image.fromPath(await resolveResource('resources/vite.png'));
 
     const icon_item = await IconMenuItem.new({
         id: 'icon_item',
