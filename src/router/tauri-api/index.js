@@ -20,6 +20,11 @@ export default [
         component: () => import('@/views/tauri-api/Event.vue'),
     },
     {
+        path: '/menu',
+        name: "Menu",
+        component: () => import('@/views/tauri-api/Menu.vue'),
+    },
+    {
         path: '/path',
         name: "Path",
         component: () => import('@/views/tauri-api/Path.vue'),
