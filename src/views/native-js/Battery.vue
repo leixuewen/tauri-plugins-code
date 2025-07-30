@@ -1,57 +1,81 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { Snackbar } from '@varlet/ui';
 
-const battery = ref({
-    level: Number,
-    charging: Boolean,
-    chargingTime: Number,
-    dischargingTime: Number,
+const batteryInfo = ref({
+    level: '',
+    charging: '',
+    chargingTime: '',
+    dischargingTime: '',
 });
 
+let battery;
 onMounted(() => {
     navigator.getBattery().then(_battery => {
-        battery.value = _battery;
-        console.log(_battery);
+        // console.log(_battery);
+        battery = _battery;
         _battery.onchargingchange = onchargingchange;
         _battery.onchargingtimechange = onchargingtimechange;
         _battery.ondischargingtimechange = ondischargingtimechange;
         _battery.onlevelchange = onlevelchange;
-        updateAllBatteryInfo();
+        updateAllBatteryInfo(battery);
     }).catch(err => {
         Snackbar.error(err);
     });
 })
 
-function updateAllBatteryInfo() {
-    onchargingchange();
-    onchargingtimechange();
-    ondischargingtimechange();
-    onlevelchange();
+onUnmounted(() => {
+    battery.onchargingchange = null;
+    battery.onchargingtimechange = null;
+    battery.ondischargingtimechange = null;
+    battery.onlevelchange = null;
+});
+
+function updateAllBatteryInfo(_battery) {
+    batteryInfo.value.level = _battery.level + '';
+    batteryInfo.value.charging = _battery.charging + '';
+    batteryInfo.value.chargingTime = _battery.chargingTime + '';
+    batteryInfo.value.dischargingTime = _battery.dischargingTime + '';
 }
 
-function onlevelchange() {
-    console.log(`电池电量：${battery.value.level * 100}%`);
+function onlevelchange(e) {
+    let _battery = e.target;
+    updateAllBatteryInfo(_battery);
+    let msg = `level: ${_battery.level * 100}%`;
+    console.info(msg);
+    Snackbar.info(msg);
 }
 
-function onchargingchange() {
-    console.log(`电池是否充电中？${battery.value.charging ? "是" : "否"}`);
+function onchargingchange(e) {
+    let _battery = e.target;
+    updateAllBatteryInfo(_battery);
+    let msg = `charging: ${_battery.charging ? "yes" : "no"}`;
+    console.info(msg);
+    Snackbar.info(msg);
 }
 
-function onchargingtimechange() {
-    console.log(`电池充电时间：${battery.value.chargingTime}秒`);
+function onchargingtimechange(e) {
+    let _battery = e.target;
+    updateAllBatteryInfo(_battery);
+    let msg = `chargingTime: ${_battery.chargingTime}`;
+    console.info(msg);
+    Snackbar.info(msg);
 }
 
-function ondischargingtimechange() {
-    console.log(`电池续航时间：${battery.value.dischargingTime}秒`);
+function ondischargingtimechange(e) {
+    let _battery = e.target;
+    updateAllBatteryInfo(_battery);
+    let msg = `dischargingTime: ${_battery.dischargingTime}`;
+    console.info(msg);
+    Snackbar.info(msg);
 }
 
 </script>
 <template>
     <var-card>
-        <var-cell title="level" :description="battery.level + ''" />
-        <var-cell title="charging" :description="battery.charging + ''" />
-        <var-cell title="chargingTime" :description="battery.chargingTime + ''" />
-        <var-cell title="dischargingTime" :description="battery.dischargingTime + ''" />
+        <var-cell title="level" :description="batteryInfo.level" />
+        <var-cell title="charging" :description="batteryInfo.charging" />
+        <var-cell title="chargingTime" :description="batteryInfo.chargingTime" />
+        <var-cell title="dischargingTime" :description="batteryInfo.dischargingTime" />
     </var-card>
 </template>
