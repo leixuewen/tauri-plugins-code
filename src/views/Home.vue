@@ -1,12 +1,14 @@
 <script setup>
 import plugins from '@/router/plugins';
 import tauriApi from '@/router/tauri-api';
+import nativeJS from '@/router/native-js';
 import { ref } from 'vue';
 
 const active = ref(0);
 const tabs = ref([
   { val: plugins, label: "plugins", icon: "home" },
   { val: tauriApi, label: "tauriApi", icon: "magnify" },
+  { val: nativeJS, label: "nativeJS", icon: "code-json" },
 ]);
 
 </script>

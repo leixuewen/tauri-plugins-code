@@ -89,16 +89,6 @@ function clearWatchFun() {
     }
 }
 
-function WebApiGeolocation() {
-    navigator.geolocation.getCurrentPosition(s => {
-        Snackbar.success("WebApiGeolocation success");
-        pos.value = s;
-    }, e => {
-        console.log(e);
-        alert("请在系统设置-》位置-》允许应用访问你的位置信息(开启)");
-    });
-}
-
 </script>
 <template>
     <var-card :title="'Geolocation: ' + location">
@@ -108,6 +98,5 @@ function WebApiGeolocation() {
             watchPosition {{ channelId }}
         </var-button>
         <var-button type="danger" block @click="clearWatchFun">clearWatch {{ channelId }}</var-button>
-        <var-button type="info" block @click="WebApiGeolocation">WebApiGeolocation</var-button>
     </var-card>
 </template>

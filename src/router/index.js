@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import plugins from '@/router/plugins';
 import tauriApi from '@/router/tauri-api';
+import nativeJS from '@/router/native-js';
 
 // // Automatically import files in the specified directory as pages
 // let routes = import.meta.glob('../views/**/*.vue');
@@ -27,6 +28,7 @@ const router = createRouter({
     },
     ...plugins,
     ...tauriApi,
+    ...nativeJS,
   ],
 })
 
