@@ -19,4 +19,19 @@ export default [
         name: "Deviceorientation",
         component: () => import('@/views/native-js/Deviceorientation.vue'),
     },
+    {
+        path: '/networkInfo',
+        name: "NetworkInfo",
+        component: () => import('@/views/native-js/NetworkInfo.vue'),
+    },
+    {
+        path: '/notifications',
+        name: "Notifications",
+        component: () => import('@/views/native-js/Notifications.vue'),
+    },
+    {
+        path: '/mediaDevices',
+        name: "MediaDevices",
+        component: () => import('@/views/native-js/MediaDevices.vue'),
+    },
 ].map(v => { v.meta = { description: 'native-js' + v.path }; return v; })
