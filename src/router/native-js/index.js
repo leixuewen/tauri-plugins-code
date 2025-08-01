@@ -34,4 +34,9 @@ export default [
         name: "MediaDevices",
         component: () => import('@/views/native-js/MediaDevices.vue'),
     },
+    {
+        path: '/sensor',
+        name: "Sensor",
+        component: () => import('@/views/native-js/Sensor.vue'),
+    },
 ].map(v => { v.meta = { description: 'native-js' + v.path }; return v; })
