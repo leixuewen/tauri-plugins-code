@@ -63,4 +63,12 @@ export default [
             description: "Save window positions and sizes and restore them when the app is reopened.",
         }
     },
+    {
+        path: '/screenshots',
+        name: "Screenshots",
+        component: () => import('@/views/plugins/Screenshots.vue'),
+        meta: {
+            description: "Get screenshots of windows and monitors.",
+        }
+    },
 ]

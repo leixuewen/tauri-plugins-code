@@ -10,6 +10,7 @@
   ],
   "permissions": [
     "autostart:default",
+    "screenshots:default",
     "global-shortcut:allow-is-registered",
     "global-shortcut:allow-register",
     "global-shortcut:allow-register-all",

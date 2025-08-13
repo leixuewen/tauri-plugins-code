@@ -38,6 +38,7 @@ pub fn run() {
                     tauri_plugin_autostart::MacosLauncher::LaunchAgent,
                     Some(vec!["--flag1", "--flag2"]), /* 传递给应用程序的任意数量的参数 */
                 ));
+                let _ = handle.plugin(tauri_plugin_screenshots::init());
                 let _ = handle.plugin(tauri_plugin_cli::init());
                 let _ = handle.plugin(tauri_plugin_global_shortcut::Builder::new().build());
                 let _ = handle.plugin(tauri_plugin_positioner::init());
