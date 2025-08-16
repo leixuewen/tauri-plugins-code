@@ -25,7 +25,7 @@
     "@tauri-apps/plugin-biometric": "^2.3.0",
     "@tauri-apps/plugin-cli": "^2.4.0",
     "@tauri-apps/plugin-clipboard-manager": "^2.3.0",
-    "@tauri-apps/plugin-dialog": "^2.3.1",
+    "@tauri-apps/plugin-dialog": "^2.3.2",
     "@tauri-apps/plugin-fs": "^2.4.1",
     "@tauri-apps/plugin-geolocation": "^2.3.0",
     "@tauri-apps/plugin-global-shortcut": "^2.3.0",
@@ -46,6 +46,8 @@
     "@tauri-apps/plugin-websocket": "^2.4.0",
     "@tauri-apps/plugin-window-state": "^2.4.0",
     "@varlet/ui": "^3.11.0",
+    "barcode-detector-api-polyfill": "^1.0.17",
+    "qr-scanner": "^1.4.2",
     "tauri-plugin-screenshots-api": "^2.2.0",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"

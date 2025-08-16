@@ -39,4 +39,9 @@ export default [
         name: "Sensor",
         component: () => import('@/views/native-js/Sensor.vue'),
     },
+    {
+        path: '/qrScanner',
+        name: "QrScanner",
+        component: () => import('@/views/native-js/QrScanner.vue'),
+    },
 ].map(v => { v.meta = { description: 'native-js' + v.path }; return v; })

@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue';
 import { Snackbar } from '@varlet/ui';
+import DarcodeDetectorApiPolyfill from 'barcode-detector-api-polyfill';
 
 let stream, stream1, interval;
 onUnmounted(() => {
@@ -72,9 +73,16 @@ function cancelScanCode() {
     clearInterval(interval);
 }
 
-const barcodeDetector = new BarcodeDetector({
-    formats: ['aztec', 'code_128', 'code_39', 'code_93', 'codabar', 'data_matrix', 'ean_13', 'ean_8', 'itf', 'pdf417', 'qr_code', 'upc_a', 'upc_e'],
-});
+let barcodeDetector;
+let formats = ['aztec', 'code_128', 'code_39', 'code_93', 'codabar', 'data_matrix', 'ean_13', 'ean_8', 'itf', 'pdf417', 'qr_code', 'upc_a', 'upc_e'];
+if (!("BarcodeDetector" in globalThis)) {
+    console.log("此浏览器不支持条形码检测器。");
+    // let DarcodeDetectorApiPolyfill = require('barcode-detector-api-polyfill');
+    barcodeDetector = new DarcodeDetectorApiPolyfill({ formats });
+} else {
+    console.log("条形码检测器是支持的！");
+    barcodeDetector = new BarcodeDetector({ formats });
+}
 
 // BarcodeDetector.getSupportedFormats().then(supportedFormats => {
 //     console.log(supportedFormats);
@@ -96,7 +104,7 @@ function barcodeDetectorVideo() {
 </script>
 <template>
     <var-card title="ScanCode">
-        <video id="ScanCodeVideo" width="100%" height="30%" playsinline="true" autoplay
+        <video id="ScanCodeVideo" width="100%" height="360px" playsinline="true" autoplay
             poster="/src/assets/tauri.svg"></video>
         <var-button block type="success" @click="scanCode('environment')">backScanCode</var-button>
         <var-button block type="info" @click="scanCode('user')">frontScanCode</var-button>
