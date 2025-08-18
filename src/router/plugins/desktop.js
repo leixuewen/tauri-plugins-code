@@ -71,4 +71,12 @@ export default [
             description: "Get screenshots of windows and monitors.",
         }
     },
+    {
+        path: '/system-info',
+        name: "SystemInfo",
+        component: () => import('@/views/plugins/SystemInfo.vue'),
+        meta: {
+            description: "A tauri plugin for retrieving system info",
+        }
+    },
 ]

@@ -49,6 +49,7 @@
     "barcode-detector-api-polyfill": "^1.0.17",
     "qr-scanner": "^1.4.2",
     "tauri-plugin-screenshots-api": "^2.2.0",
+    "tauri-plugin-system-info-api": "^2.0.10",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },
