@@ -44,4 +44,9 @@ export default [
         name: "QrScanner",
         component: () => import('@/views/native-js/QrScanner.vue'),
     },
+    {
+        path: '/swipeVideo',
+        name: "SwipeVideo",
+        component: () => import('@/views/native-js/SwipeVideo.vue'),
+    },
 ].map(v => { v.meta = { description: 'native-js' + v.path }; return v; })
