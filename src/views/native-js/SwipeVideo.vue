@@ -149,7 +149,7 @@ function share(_item) {
         </var-swipe-item>
     </var-swipe>
 </template>
-<style>
+<style scoped>
 .swipe-example {
     height: calc(100vh - 54px);
     position: relative;

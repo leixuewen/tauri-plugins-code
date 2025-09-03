@@ -49,4 +49,9 @@ export default [
         name: "SwipeVideo",
         component: () => import('@/views/native-js/SwipeVideo.vue'),
     },
+    {
+        path: '/swipeAudio',
+        name: "SwipeAudio",
+        component: () => import('@/views/native-js/SwipeAudio.vue'),
+    },
 ].map(v => { v.meta = { description: 'native-js' + v.path }; return v; })
