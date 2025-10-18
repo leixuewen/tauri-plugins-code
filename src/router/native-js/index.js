@@ -1,5 +1,10 @@
 export default [
     {
+        path: '/info',
+        name: "Info",
+        component: () => import('@/views/native-js/Info.vue'),
+    },
+    {
         path: '/geolocatons',
         name: "Geolocaton",
         component: () => import('@/views/native-js/Geolocaton.vue'),

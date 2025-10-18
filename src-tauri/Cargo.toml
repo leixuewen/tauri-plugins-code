@@ -15,27 +15,26 @@ name = "tauri_plugins_code_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.3.1", features = [] }
+tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2.7.0", features = ['tray-icon', 'image-png'] }
-tauri-plugin-opener = "2.4.0"
-serde = { version = "1.0.219", features = ["derive"] }
-serde_json = "1.0.141"
-tauri-plugin-os = "2.3.0"
-tauri-plugin-clipboard-manager = "2.3.0"
-tauri-plugin-dialog = "2.3.2"
-# tauri-plugin-fs = "2.4.0"
-tauri-plugin-fs = { version = "2.4.1", features = ["watch"] }
-tauri-plugin-http = "2.5.1"
-tauri-plugin-log = "2.6.0"
-tauri-plugin-notification = "2.3.0"
-tauri-plugin-process = "2.3.0"
-tauri-plugin-shell = "2.3.0"
-tauri-plugin-sql = { version = "2.3.0", features = ["sqlite"] }
-tauri-plugin-store = "2.3.0"
-tauri-plugin-upload = "2.3.1"
-tauri-plugin-websocket = "2.4.0"
+tauri = { version = "2", features = ['tray-icon', 'image-png'] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri-plugin-os = "2"
+tauri-plugin-clipboard-manager = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = { version = "2", features = ["watch"] }
+tauri-plugin-http = "2"
+tauri-plugin-log = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-process = "2"
+tauri-plugin-shell = "2"
+tauri-plugin-sql = { version = "2", features = ["sqlite"] }
+tauri-plugin-store = "2"
+tauri-plugin-upload = "2"
+tauri-plugin-websocket = "2"
 
 
 [profile.dev]
@@ -49,19 +48,19 @@ panic = "abort"   # 通过禁用 panic 处理程序来提高性能。
 strip = true      # 确保移除调试符号。
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
-tauri-plugin-autostart = "2.5.0"
-tauri-plugin-cli = "2.4.0"
-tauri-plugin-global-shortcut = "2.3.0"
-tauri-plugin-positioner = "2.3.0"
-tauri-plugin-single-instance = "2.3.2"
-tauri-plugin-updater = "2.9.0"
-tauri-plugin-window-state = "2.4.0"
-tauri-plugin-screenshots = "2.2.0"
-tauri-plugin-system-info = "2.0.9"
+tauri-plugin-autostart = "2"
+tauri-plugin-cli = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-positioner = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-updater = "2"
+tauri-plugin-window-state = "2"
+tauri-plugin-screenshots = "2"
+tauri-plugin-system-info = "2"
 
 [target.'cfg(any(target_os = "android", target_os = "ios"))'.dependencies]
-tauri-plugin-barcode-scanner = "2.4.0"
-tauri-plugin-biometric = "2.3.0"
-tauri-plugin-nfc = "2.3.0"
-tauri-plugin-geolocation = "2.3.0"
-tauri-plugin-haptics = "2.3.0"
+tauri-plugin-barcode-scanner = "2"
+tauri-plugin-biometric = "2"
+tauri-plugin-nfc = "2"
+tauri-plugin-geolocation = "2"
+tauri-plugin-haptics = "2"
