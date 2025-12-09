@@ -12,8 +12,8 @@
     "desktop_build__no_bundle": "cross-env VITE_desktop=true tauri build --no-bundle",
     "android_dev": "cross-env VITE_mobile=true tauri android dev",
     "android_build": "cross-env VITE_mobile=true tauri android build",
-    "android_build__apk": "cross-env VITE_mobile=true tauri android build --apk",
-    "android_build__apk__aarch64": "cross-env VITE_mobile=true tauri android build --apk --target aarch64",
+    "android_build__apk": "cross-env VITE_mobile=true tauri android build --apk true",
+    "android_build__apk__aarch64": "cross-env VITE_mobile=true tauri android build --apk true --target aarch64",
     "android_build__split_per_abi": "cross-env VITE_mobile=true tauri android build --split-per-abi",
     "tauri_info": "tauri info",
     "tauri": "tauri"
