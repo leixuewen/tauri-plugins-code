@@ -4,6 +4,33 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+#[tauri::command]
+async fn webview_window(webview_window: tauri::WebviewWindow) -> String {
+    format!("{:?}", webview_window)
+}
+
+#[tauri::command]
+async fn app_handle(app_handle: tauri::AppHandle) -> String {
+    // app_handle.global_shortcut().register("CTRL + U", move || {});
+    // app_handle.listen("download-started", |event| {});
+    // app_handle.once("ready", |event| {});
+    // app_handle.emit("ready", |event| {});
+    format!("{:?}", app_handle)
+}
+
+#[tauri::command]
+fn ipc_request(request: tauri::ipc::Request) -> String {
+    format!("{:?}", request)
+}
+
+#[tauri::command]
+fn ipc_channel(channel: tauri::ipc::Channel<&str>) {
+    for i in 0..9 {
+        let _ = channel.send((format!("Hello, {}!", i)).as_str());
+        std::thread::sleep(std::time::Duration::from_secs(1));
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -67,7 +94,13 @@ pub fn run() {
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            ipc_channel,
+            ipc_request,
+            app_handle,
+            webview_window
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

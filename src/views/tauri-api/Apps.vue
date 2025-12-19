@@ -12,6 +12,7 @@ import {
     setTheme,
     setDockVisibility,
     removeDataStore,
+    onBackButtonPress,
 } from '@tauri-apps/api/app';
 import { type } from '@tauri-apps/plugin-os';
 import { StyleProvider, Themes } from '@varlet/ui';
@@ -31,7 +32,11 @@ const app = ref({
 });
 
 onBeforeMount(() => {
-    defaultWindowIcon().then(val => app.value.defaultWindowIcon = val);
+    defaultWindowIcon().then(val => {
+      app.value.defaultWindowIcon.rid = val.rid;
+      // val.rgba().then(r => app.value.defaultWindowIcon.rgba = r);
+      val.size().then(s => app.value.defaultWindowIcon.size = s);
+    });
     fetchDataStoreIdentifiers().then(val => app.value.fetchDataStoreIdentifiers = val);
     getBundleType().then(val => app.value.getBundleType = val);
     getIdentifier().then(val => app.value.getIdentifier = val);
@@ -69,6 +74,15 @@ function removeDataStoreFun() {
     })
 }
 
+const backButtonPress = ref({});
+function onBackButtonPressFun() {
+  if (backButtonPress.value.channelId) {
+    backButtonPress.value.unregister();
+    backButtonPress.value = {};
+    return;
+  }
+  onBackButtonPress().then(val => backButtonPress.value = val);
+}
 </script>
 <template>
     <var-card>
@@ -79,6 +93,10 @@ function removeDataStoreFun() {
         <var-cell>getName : {{ app.getName }}</var-cell>
         <var-cell>getTauriVersion : {{ app.getTauriVersion }}</var-cell>
         <var-cell>getVersion : {{ app.getVersion }}</var-cell>
+        <var-cell v-if="osType === 'android'">
+          <var-button type="success" @click="onBackButtonPressFun">onBackButtonPress</var-button>
+          {{ backButtonPress }}
+        </var-cell>
         <var-button v-if="osType == 'macos'" block type="primary" @click="hideFun"> app hide => app show</var-button>
         <var-button v-if="osType == 'macos'" block type="primary"
             @click="setDockVisibility(true)">setDockVisibility</var-button>
