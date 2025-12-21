@@ -5,7 +5,10 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { Snackbar } from '@varlet/ui';
 import { Menu, MenuItem } from '@tauri-apps/api/menu';
 
-const tray = ref(TrayIcon.prototype);
+/**
+ * @type {import('vue').Ref<TrayIcon>}
+ */
+const tray = ref();
 const isVisible = ref(true);
 
 onMounted(async () => {
