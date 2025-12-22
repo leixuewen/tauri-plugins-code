@@ -1,42 +1,49 @@
 <script setup>
 import {
-    getCurrentWindow, currentMonitor, monitorFromPoint,
-    primaryMonitor, availableMonitors, cursorPosition
+  Window,
+  CloseRequestedEvent,
+  getCurrentWindow,
+  getAllWindows,
+  LogicalSize,
+  PhysicalSize,
+  LogicalPosition,
+  PhysicalPosition,
+  UserAttentionType,
+  Effect,
+  EffectState,
+  currentMonitor,
+  monitorFromPoint,
+  primaryMonitor,
+  availableMonitors,
+  cursorPosition
 } from "@tauri-apps/api/window";
-import { onBeforeMount, ref } from "vue";
+import {onBeforeMount, ref} from "vue";
 
-const win = ref(getCurrentWindow());
-const window = ref({
-    currentMonitor: '',
-    monitorFromPoint: '',
-    primaryMonitor: '',
-    cursorPosition: '',
+const win = ref({
+  currentMonitor: {},
+  monitorFromPoint: {},
+  availableMonitors: {},
+  primaryMonitor: {},
+  cursorPosition: {},
 });
 
-onBeforeMount(async () => {
-    window.value.currentMonitor = await currentMonitor();
-    window.value.monitorFromPoint = await monitorFromPoint(100.0, 200.0);
-    window.value.primaryMonitor = await primaryMonitor();
-    window.value.availableMonitors = await availableMonitors();
-    window.value.cursorPosition = await cursorPosition();
-});
-
-win.value.once("tauri://created", () => {
-    // window successfully created
-    console.log("window successfully created");
-});
-win.value.once("tauri://error", (e) => {
-    // an error happened creating the window
-    console.log(e);
+onBeforeMount(() => {
+  currentMonitor().then(val => win.value.currentMonitor = val);
+  monitorFromPoint(100.0, 200.0).then(val => win.value.monitorFromPoint = val);
+  availableMonitors().then(val => win.value.availableMonitors = val);
+  primaryMonitor().then(val => win.value.primaryMonitor = val);
+  cursorPosition().then(val => win.value.cursorPosition = val);
 });
 
 </script>
 <template>
-    <var-card>
-        <var-button block type="primary" @click="win.center()">center</var-button>
-        <var-cell title="currentMonitor" :description="JSON.stringify(window.currentMonitor)" />
-        <var-cell title="monitorFromPoint" :description="JSON.stringify(window.monitorFromPoint)" />
-        <var-cell title="availableMonitors" :description="JSON.stringify(window.availableMonitors)" />
-        <var-cell title="cursorPosition" :description="JSON.stringify(window.cursorPosition)" />
-    </var-card>
+  <var-card>
+    <var-button block type="primary" @click="getCurrentWindow().center()">center</var-button>
+    <var-cell title="currentMonitor" :description="JSON.stringify(win.currentMonitor)"/>
+    <var-cell title="monitorFromPoint" :description="JSON.stringify(win.monitorFromPoint)"/>
+    <var-cell title="availableMonitors" :description="JSON.stringify(win.availableMonitors)"/>
+    <var-cell title="primaryMonitor" :description="JSON.stringify(win.primaryMonitor)"/>
+    <var-cell title="cursorPosition" :description="JSON.stringify(win.cursorPosition)"/>
+    <var-button block type="success" @click="Window.getFocusedWindow()">getFocusedWindow</var-button>
+  </var-card>
 </template>
