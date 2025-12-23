@@ -1,6 +1,6 @@
 <script setup>
 import WebSocket from '@tauri-apps/plugin-websocket';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, ref } from 'vue';
 import { Snackbar } from '@varlet/ui';
 
 let ws = WebSocket.prototype;
@@ -31,9 +31,10 @@ function send() {
 }
 
 function disconnect() {
-    ws.disconnect().catch(err => {
-        Snackbar.error(err);
-    });
+  if (!ws.id) return;
+  ws.disconnect().catch(err => {
+    Snackbar.error(err);
+  });
 }
 </script>
 <template>
