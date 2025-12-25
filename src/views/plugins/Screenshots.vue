@@ -1,93 +1,119 @@
 <script setup>
 import {
-    getScreenshotableWindows,
-    getScreenshotableMonitors,
-    getWindowScreenshot,
-    getMonitorScreenshot,
-    removeWindowScreenshot,
-    removeMonitorScreenshot,
-    clearScreenshots,
+  getScreenshotableWindows,
+  getScreenshotableMonitors,
+  getWindowScreenshot,
+  getMonitorScreenshot,
+  removeWindowScreenshot,
+  removeMonitorScreenshot,
+  clearScreenshots,
 } from "tauri-plugin-screenshots-api";
-import { onMounted, onUnmounted, ref } from "vue";
-import { Snackbar } from '@varlet/ui';
+import {onMounted, onUnmounted, ref} from "vue";
+import {Snackbar} from '@varlet/ui';
 
 onMounted(() => {
-    getScreenshotableWindow();
-    getScreenshotableMonitor();
+  loadScreenshotWindows();
+  loadScreenshotMonitors();
 });
 onUnmounted(() => {
-    clearScreenshots();
+  clearScreenshots();
 });
 
-const screenshotableWindows = ref([]);
-function getScreenshotableWindow() {
-    getScreenshotableWindows().then(val => {
-        console.log(val);
-        screenshotableWindows.value = val;
-    }).catch(err => {
-        Snackbar.error('Screenshots Error : ' + err);
-    });
+/**
+ * @type {import('vue').Ref<ScreenshotableWindow[]>}
+ */
+const screenshotWindows = ref([]);
+
+function loadScreenshotWindows() {
+  getScreenshotableWindows().then(val => {
+    console.log(val);
+    screenshotWindows.value = val;
+  }).catch(err => {
+    Snackbar.error('Screenshots Error : ' + err);
+  });
 }
 
-const screenshotableMonitors = ref([]);
-function getScreenshotableMonitor() {
-    getScreenshotableMonitors().then(val => {
-        console.log(val);
-        screenshotableMonitors.value = val;
-    }).catch(err => {
-        Snackbar.error('Screenshots Error : ' + err);
-    });
+/**
+ * @type {import('vue').Ref<ScreenshotableMonitor[]>}
+ */
+const screenshotMonitors = ref([]);
+
+function loadScreenshotMonitors() {
+  getScreenshotableMonitors().then(val => {
+    console.log(val);
+    screenshotMonitors.value = val;
+  }).catch(err => {
+    Snackbar.error('Screenshots Error : ' + err);
+  });
 }
 
-function getWindowScreenshots() {
-    getWindowScreenshot(screenshotableWindows.value[screenshotableWindows.value.length - 1].id).then(val => {
-        console.log(val);
-    }).catch(err => {
-        Snackbar.error('Screenshots Error : ' + err);
-    });
+function getWindowScreenshots(id) {
+  getWindowScreenshot(id).then(val => {
+    console.log(val);
+    Snackbar.success('getWindowScreenshot success => ' + val);
+  }).catch(err => {
+    Snackbar.error('Screenshots Error : ' + err);
+  });
 }
 
-
-function getMonitorScreenshots() {
-    getMonitorScreenshot(screenshotableMonitors.value[0].id).then(val => {
-        console.log(val);
-    }).catch(err => {
-        Snackbar.error('Screenshots Error : ' + err);
-    });
+function getMonitorScreenshots(id) {
+  getMonitorScreenshot(id).then(val => {
+    console.log(val);
+    Snackbar.success('getMonitorScreenshot success => ' + val);
+  }).catch(err => {
+    Snackbar.error('Screenshots Error : ' + err);
+  });
 }
 
-function removeWindowScreenshots() {
-    removeWindowScreenshot(screenshotableWindows.value[0].id).then(val => {
-        console.log(val);
-    }).catch(err => {
-        Snackbar.error('Screenshots Error : ' + err);
-    });
+function removeWindowScreenshots(id) {
+  removeWindowScreenshot(id).then(val => {
+    console.log(val);
+    Snackbar.info('removeWindowScreenshot success');
+  }).catch(err => {
+    Snackbar.error('Screenshots Error : ' + err);
+  });
 }
 
-
-function removeMonitorScreenshots() {
-    removeMonitorScreenshot(screenshotableMonitors.value[0].id).then(val => {
-        console.log(val);
-    }).catch(err => {
-        Snackbar.error('Screenshots Error : ' + err);
-    });
+function removeMonitorScreenshots(id) {
+  removeMonitorScreenshot(id).then(val => {
+    console.log(val);
+    Snackbar.info('removeMonitorScreenshot success');
+  }).catch(err => {
+    Snackbar.error('Screenshots Error : ' + err);
+  });
 }
 
 </script>
 <template>
-    <var-card title="GetScreenshotable">
-        <var-cell v-for="item in screenshotableWindows" :key="item.id" :title="item.appName" :description="item.name" />
-        <var-button type="success" block @click="getScreenshotableWindow">getScreenshotableWindows</var-button>
-        <var-cell v-for="item in screenshotableMonitors" :key="item.id" :title="item.name" />
-        <var-button type="primary" block @click="getScreenshotableMonitor">getScreenshotableMonitors</var-button>
-    </var-card>
-    <var-card title="GetScreenshots">
-        <var-button type="info" block @click="getWindowScreenshots">getWindowScreenshot</var-button>
-        <var-button type="primary" block @click="getMonitorScreenshots">getMonitorScreenshot</var-button>
-    </var-card>
-    <var-card title="removeScreenshots">
-        <var-button type="success" block @click="removeWindowScreenshots">removeWindowScreenshot</var-button>
-        <var-button type="warning" block @click="removeMonitorScreenshots">removeMonitorScreenshot</var-button>
-        <var-button type="danger" block @click="clearScreenshots">clearScreenshots</var-button>
-    </var-card>
+  <var-card title="GetScreenshot">
+    <var-cell v-for="item in screenshotWindows" :key="item.id" :title="item.appName"
+              :description="JSON.stringify(item)" border>
+      <template #extra>
+        <div style="text-align: center">
+          <var-button round icon-container @click="getWindowScreenshots(item.id)">
+            <var-icon name="camera"/>
+          </var-button>
+          <var-button round icon-container @click="removeWindowScreenshots(item.id)">
+            <var-icon name="delete"/>
+          </var-button>
+        </div>
+      </template>
+    </var-cell>
+    <var-button type="success" block @click="loadScreenshotWindows">loadScreenshotWindows</var-button>
+    <var-cell v-for="item in screenshotMonitors" :key="item.id" :title="item.name"
+              :description="JSON.stringify(item)" border>
+      <template #extra>
+        <div style="text-align: center">
+          <var-button round icon-container @click="getMonitorScreenshots(item.id)">
+            <var-icon name="camera"/>
+          </var-button>
+          <var-button round icon-container @click="removeMonitorScreenshots(item.id)">
+            <var-icon name="delete"/>
+          </var-button>
+        </div>
+      </template>
+    </var-cell>
+    <var-button type="primary" block @click="loadScreenshotMonitors">loadScreenshotMonitors</var-button>
+  </var-card>
+  <var-button type="danger" block @click="clearScreenshots">clearScreenshots all</var-button>
 </template>

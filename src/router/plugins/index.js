@@ -57,7 +57,7 @@ export default [
     },
     {
         path: '/notification',
-        name: "notification",
+        name: "Notification",
         component: () => import('@/views/plugins/Notification.vue'),
         meta: {
             description: "Send native notifications to your user using the notification plugin.",
@@ -65,7 +65,7 @@ export default [
     },
     {
         path: '/opener',
-        name: "opener",
+        name: "Opener",
         component: () => import('@/views/plugins/Opener.vue'),
         meta: {
             description: "This plugin allows you to open files and URLs in a specified, or the default, application. It also supports “revealing” files in the system’s file explorer.",
@@ -73,7 +73,7 @@ export default [
     },
     {
         path: '/osInfo',
-        name: "OsInformation",
+        name: "OsInfo",
         component: () => import('@/views/plugins/OsInfo.vue'),
         meta: {
             description: "Read information about the operating system using the OS Information plugin.",
