@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "notes": "Notes about the update.",
+  "pub_date": "2025-12-26T15:40:50.52Z",
+  "platforms": {
+    "linux-x86_64": {
+      "signature": "",
+      "url": "https://github.com/leixuewen/tauri-plugins-code/releases"
+    },
+    "windows-x86_64": {
+      "signature": "",
+      "url": "https://github.com/leixuewen/tauri-plugins-code/releases"
+    },
+    "darwin-x86_64": {
+      "signature": "",
+      "url": "https://github.com/leixuewen/tauri-plugins-code/releases"
+    },
+    "android-aarch64": {
+      "signature": "",
+      "url": "https://github.com/leixuewen/tauri-plugins-code/releases"
+    }
+  }
+}
