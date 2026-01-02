@@ -104,6 +104,14 @@ export default [
         }
     },
     {
+        path: '/serialPort',
+        name: "SerialPort",
+        component: () => import('@/views/plugins/SerialPort.vue'),
+        meta: {
+            description: "Access the current process of your Tauri application.",
+        }
+    },
+    {
         path: '/websocket',
         name: "Websocket",
         component: () => import('@/views/plugins/Websocket.vue'),

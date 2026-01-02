@@ -221,6 +221,7 @@
     },
     "os:allow-hostname",
     "os:default",
+    "serialplugin:default",
     "sql:allow-execute",
     "sql:default",
     "store:default",
