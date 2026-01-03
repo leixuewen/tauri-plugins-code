@@ -48,6 +48,7 @@
     "@varlet/ui": "^3",
     "barcode-detector-api-polyfill": "^1",
     "qr-scanner": "^1",
+    "tauri-plugin-cache-api": "^0",
     "tauri-plugin-screenshots-api": "^2",
     "tauri-plugin-serialplugin-api": "^2",
     "tauri-plugin-system-info-api": "^2",

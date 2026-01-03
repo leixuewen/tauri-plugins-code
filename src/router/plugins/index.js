@@ -24,6 +24,14 @@ export default [
         }
     },
     {
+        path: '/cache',
+        name: "Cache",
+        component: () => import('@/views/plugins/Cache.vue'),
+        meta: {
+            description: "Advanced disk caching solution for Tauri applications. Provides compression, TTL management, memory caching, automatic cleanup, and cross-platform support. Enhances data access performance and storage optimization.",
+        }
+    },
+    {
         path: '/dialog',
         name: "Dialog",
         component: () => import('@/views/plugins/Dialog.vue'),

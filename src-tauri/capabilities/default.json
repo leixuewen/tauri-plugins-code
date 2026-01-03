@@ -6,6 +6,7 @@
     "main"
   ],
   "permissions": [
+    "cache:default",
     "core:default",
     "core:window:allow-hide",
     "core:window:allow-show",

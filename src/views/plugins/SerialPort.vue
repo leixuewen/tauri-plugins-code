@@ -76,28 +76,22 @@ function listeningSerialPort(item) {
       <var-card title="PortInfo">{{ serialPorts[item].portInfo }}</var-card>
       <var-card title="SerialPortOptions">
         <var-input class="input" clearable v-model="serialPorts[item].options.path" placeholder="path"/>
-        <var-input class="input" clearable v-model="serialPorts[item].options.baudRate" type="number"
-                   placeholder="baudRate"/>
+        <var-select class="input" clearable v-model="serialPorts[item].options.baudRate" placeholder="baudRate">
+          <var-option :label="item"
+                      v-for="item in [110,300,600,1200,2400,4800,9600,14400,19200,38400,57600,115200,230400,460800,921600]"/>
+        </var-select>
         <var-input class="input" clearable v-model="serialPorts[item].options.encoding" placeholder="encoding"/>
         <var-select class="input" clearable v-model="serialPorts[item].options.dataBits" placeholder="dataBits">
-          <var-option label="Five"/>
-          <var-option label="Six"/>
-          <var-option label="Seven"/>
-          <var-option label="Eight"/>
+          <var-option :label="item" v-for="item in ['Five', 'Six', 'Seven','Eight']"/>
         </var-select>
         <var-select class="input" clearable v-model="serialPorts[item].options.flowControl" placeholder="flowControl">
-          <var-option label="None"/>
-          <var-option label="Software"/>
-          <var-option label="Hardware"/>
+          <var-option :label="item" v-for="item in ['None', 'Software', 'Hardware']"/>
         </var-select>
         <var-select class="input" clearable v-model="serialPorts[item].options.parity" placeholder="flowControl">
-          <var-option label="None"/>
-          <var-option label="Odd"/>
-          <var-option label="Even"/>
+          <var-option :label="item" v-for="item in ['None', 'Odd', 'Even']"/>
         </var-select>
         <var-select class="input" clearable v-model="serialPorts[item].options.stopBits" placeholder="flowControl">
-          <var-option label="One"/>
-          <var-option label="Two"/>
+          <var-option :label="item" v-for="item in ['One', 'Two']"/>
         </var-select>
         <var-input class="input" clearable v-model="serialPorts[item].options.timeout" type="number"
                    placeholder="timeout"/>
@@ -122,6 +116,7 @@ function listeningSerialPort(item) {
 <style scoped>
 .input {
   display: inline-block;
-  width: 33%;
+  width: 30%;
+  margin: 1%;
 }
 </style>
