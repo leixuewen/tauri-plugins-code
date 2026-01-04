@@ -77,6 +77,7 @@ pub fn run() {
                 let _ = handle.plugin(tauri_plugin_single_instance::init(|_app, _args, _cwd| {}));
                 let _ = handle.plugin(tauri_plugin_updater::Builder::new().build());
                 let _ = handle.plugin(tauri_plugin_window_state::Builder::new().build());
+                let _ = handle.plugin(tauri_plugin_centrifugo::init());
             }
 
             #[cfg(mobile)]

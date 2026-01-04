@@ -79,4 +79,12 @@ export default [
             description: "A tauri plugin for retrieving system info",
         }
     },
+    {
+        path: '/centrifugo',
+        name: "Centrifugo",
+        component: () => import('@/views/plugins/Centrifugo.vue'),
+        meta: {
+            description: "Tauri plugin for Centrifugo real-time communication using tokio-centrifuge.",
+        }
+    },
 ]

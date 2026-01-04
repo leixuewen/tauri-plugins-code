@@ -9,6 +9,7 @@
     "main"
   ],
   "permissions": [
+    "centrifugo:default",
     "autostart:default",
     "screenshots:default",
     "system-info:allow-all",
