@@ -1,6 +1,5 @@
 <script setup>
 import { onBeforeMount, onUnmounted, ref } from 'vue';
-import { Snackbar } from '@varlet/ui';
 
 const deviceorientation = ref({
     absolute: false,

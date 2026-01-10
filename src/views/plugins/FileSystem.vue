@@ -2,7 +2,7 @@
 import { create, writeTextFile, writeFile, readFile, watchImmediate, watch, readDir, truncate, stat, remove, rename, copyFile, readTextFileLines, mkdir, exists, open, readTextFile, BaseDirectory } from '@tauri-apps/plugin-fs';
 import { onUnmounted, ref } from 'vue';
 import { Snackbar } from '@varlet/ui';
-import TauriApiPath from "@/views/tauri-api/Path.vue";
+import TauriApiPath from "../../views/tauri-api/Path.vue";
 
 const expand = ref(false);
 const path = ref('config.json');

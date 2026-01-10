@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import plugins from '@/router/plugins';
-import tauriApi from '@/router/tauri-api';
-import nativeJS from '@/router/native-js';
+import {createRouter, createWebHistory} from 'vue-router'
+import plugins from './plugins';
+import tauriApi from './tauri-api';
+import nativeJS from './native-js';
 
 // // Automatically import files in the specified directory as pages
 // let routes = import.meta.glob('../views/**/*.vue');
@@ -19,17 +19,17 @@ import nativeJS from '@/router/native-js';
 // console.log(pages); 
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: () => import('@/views/Home.vue'),
-    },
-    ...plugins,
-    ...tauriApi,
-    ...nativeJS,
-  ],
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes: [
+        {
+            path: '/',
+            name: 'Home',
+            component: () => import('../views/Home.vue'),
+        },
+        ...plugins,
+        ...tauriApi,
+        ...nativeJS,
+    ],
 })
 
 export default router

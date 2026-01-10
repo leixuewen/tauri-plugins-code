@@ -2,7 +2,7 @@ export default [
     {
         path: '/barcodeScanner',
         name: 'Barcode Scanner',
-        component: () => import('@/views/plugins/BarcodeScanner.vue'),
+        component: () => import('../../views/plugins/BarcodeScanner.vue'),
         meta: {
             description: "Allows your mobile application to use the camera to scan QR codes, EAN-13 and other kinds of barcodes.",
         }
@@ -10,7 +10,7 @@ export default [
     {
         path: '/biometric',
         name: "Biometric",
-        component: () => import('@/views/plugins/Biometric.vue'),
+        component: () => import('../../views/plugins/Biometric.vue'),
         meta: {
             description: "Prompt the user for biometric authentication on Android and iOS.",
         }
@@ -18,7 +18,7 @@ export default [
     {
         path: '/nfc',
         name: "NFC",
-        component: () => import('@/views/plugins/NFC.vue'),
+        component: () => import('../../views/plugins/NFC.vue'),
         meta: {
             description: "Read and write NFC tags on Android and iOS.",
         }
@@ -26,7 +26,7 @@ export default [
     {
         path: '/geolocation',
         name: "Geolocation",
-        component: () => import('@/views/plugins/Geolocation.vue'),
+        component: () => import('../../views/plugins/Geolocation.vue'),
         meta: {
             description: "Get and track current device positon",
         }
@@ -34,7 +34,7 @@ export default [
     {
         path: '/haptics',
         name: "Haptics",
-        component: () => import('@/views/plugins/Haptics.vue'),
+        component: () => import('../../views/plugins/Haptics.vue'),
         meta: {
             description: "Haptic feedback and vibrations on Android and iOS",
         }

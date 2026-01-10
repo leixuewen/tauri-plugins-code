@@ -6,10 +6,8 @@ import {
     videoDir, sep, delimiter, resolve, normalize, join, dirname, extname, basename, isAbsolute, tempDir,
 } from '@tauri-apps/api/path';
 import { onMounted, ref } from 'vue';
-import { type } from '@tauri-apps/plugin-os';
 import { Snackbar } from '@varlet/ui';
 
-const osType = type();
 const dir = ref({
     appConfigDir: "",
     appDataDir: "",
@@ -57,22 +55,22 @@ onMounted(async () => {
         dir.value.cacheDir = await cacheDir();
         dir.value.configDir = await configDir();
         dir.value.dataDir = await dataDir();
-        dir.value.desktopDir = !['android'].includes(osType) ? await desktopDir() : "";
+        dir.value.desktopDir = await desktopDir();
         dir.value.documentDir = await documentDir();
         dir.value.downloadDir = await downloadDir();
-        dir.value.executableDir = ['linux'].includes(osType) ? await executableDir() : "";
-        dir.value.fontDir = !['windows', 'android'].includes(osType) ? await fontDir() : "";
+        dir.value.executableDir = await executableDir();
+        dir.value.fontDir = await fontDir();
         dir.value.homeDir = await homeDir();
         dir.value.localDataDir = await localDataDir();
         dir.value.pictureDir = await pictureDir();
         dir.value.publicDir = await publicDir();
         dir.value.resourceDir = await resourceDir();
         dir.value.resolveResource = await resolveResource();
-        dir.value.runtimeDir = ['linux'].includes(osType) ? await runtimeDir() : "";
-        dir.value.templateDir = !['macos', 'android'].includes(osType) ? await templateDir() : "";
+        dir.value.runtimeDir = await runtimeDir();
+        dir.value.templateDir = await templateDir();
         dir.value.videoDir = await videoDir();
-        dir.value.sep = await sep();
-        dir.value.delimiter = await delimiter();
+        dir.value.sep = sep();
+        dir.value.delimiter = delimiter();
         dir.value.resolve = await resolve();
         dir.value.tempDir = await tempDir();
 

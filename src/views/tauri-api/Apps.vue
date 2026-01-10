@@ -21,7 +21,6 @@ import {onBeforeMount, ref} from 'vue';
 import {Snackbar, Dialog} from '@varlet/ui';
 import "@varlet/ui/es/dialog/style";
 
-const osType = type();
 const theme = ref('light');
 const app = ref({
   defaultWindowIcon: {},
@@ -101,7 +100,7 @@ function checkUpdate() {
         title: "New version available",
         message: val.notes,
         onConfirm: () => {
-          openUrl(val.platforms[`${osType}-${arch()}`].url);
+          openUrl(val.platforms[`${type()}-${arch()}`].url);
         }
       })
     } else {
@@ -119,13 +118,16 @@ function checkUpdate() {
     <var-cell>getName : {{ app.getName }}</var-cell>
     <var-cell>getTauriVersion : {{ app.getTauriVersion }}</var-cell>
     <var-cell>getVersion : {{ app.getVersion }}</var-cell>
-    <var-cell v-if="osType === 'android'">
+    // #if VITE_mobile_android
+    <var-cell>
       <var-button type="success" @click="onBackButtonPressFun">onBackButtonPress</var-button>
       {{ backButtonPress }}
     </var-cell>
-    <var-button v-if="osType == 'macos'" block type="primary" @click="hideFun"> app hide => app show</var-button>
-    <var-button v-if="osType == 'macos'" block type="primary" @click="setDockVisibility(true)">setDockVisibility
-    </var-button>
+    // #endif
+    // #if VITE_desktop_macos
+    <var-button block type="primary" @click="hideFun"> app hide => app show</var-button>
+    <var-button block type="primary" @click="setDockVisibility(true)">setDockVisibility</var-button>
+    // #endif
     <var-button block type="danger" @click="removeDataStoreFun">removeDataStore</var-button>
     <var-button block type="primary" @click="setThemeFun">setTheme {{ theme }}</var-button>
   </var-card>

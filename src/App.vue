@@ -1,11 +1,11 @@
 <script setup>
-import AppBar from '@/components/AppBar.vue';
+import AppBar from './components/AppBar.vue';
 import "@varlet/ui/es/snackbar/style";
 </script>
 <template>
-  <AppBar />
+  <AppBar/>
   <var-paper radius="0" id="var-paper">
-    <RouterView />
+    <RouterView/>
   </var-paper>
 </template>
 <style>

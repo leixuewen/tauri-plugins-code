@@ -1,7 +1,7 @@
 <script setup>
-import plugins from '@/router/plugins';
-import tauriApi from '@/router/tauri-api';
-import nativeJS from '@/router/native-js';
+import plugins from '../router/plugins';
+import tauriApi from '../router/tauri-api';
+import nativeJS from '../router/native-js';
 import { onBeforeMount, onMounted, ref } from 'vue';
 
 const active = ref(0);
