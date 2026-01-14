@@ -10,6 +10,11 @@ export default [
         component: () => import('../../views/native-js/Geolocaton.vue'),
     },
     {
+        path: '/queryLocalFonts',
+        name: "QueryLocalFonts",
+        component: () => import('../../views/native-js/QueryLocalFonts.vue'),
+    },
+    {
         path: '/vibrate',
         name: "Vibrate",
         component: () => import('../../views/native-js/Vibrate.vue'),

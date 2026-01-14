@@ -5,13 +5,11 @@ let pages = [];
 // console.log('VITE_desktop', !!import.meta.env.VITE_desktop);
 // console.log('VITE_mobile', !!import.meta.env.VITE_mobile);
 
-if (!!import.meta.env.VITE_desktop) {
-    pages.push(...desktop);
-}
-
-if (!!import.meta.env.VITE_mobile) {
-    pages.push(...mobile);
-}
+// #if VITE_desktop
+pages.push(...desktop);
+// #elif VITE_mobile
+pages.push(...mobile);
+// #endif
 
 export default [
     ...pages,
