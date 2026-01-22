@@ -10,6 +10,9 @@ function vibrate2() {
 </script>
 <template>
     <var-card>
+        <template #title>
+          <var-alert type="danger" title="需要开启振动或非静音模式" />
+        </template>
         <var-button block type="success" @click="vibrate1">vibrate(9000)</var-button>
         <var-button block type="primary" @click="vibrate2">vibrate([...])</var-button>
     </var-card>

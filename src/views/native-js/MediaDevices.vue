@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
-import { Snackbar } from '@varlet/ui';
-import DarcodeDetectorApiPolyfill from 'barcode-detector-api-polyfill';
+import {onMounted, onUnmounted, ref} from 'vue';
+import {Snackbar} from '@varlet/ui';
+import {BarcodeDetector} from "barcode-detector/ponyfill";
 
 let stream, stream1, interval;
 onUnmounted(() => {
@@ -74,19 +74,12 @@ function cancelScanCode() {
 }
 
 let barcodeDetector;
-let formats = ['aztec', 'code_128', 'code_39', 'code_93', 'codabar', 'data_matrix', 'ean_13', 'ean_8', 'itf', 'pdf417', 'qr_code', 'upc_a', 'upc_e'];
-if (!("BarcodeDetector" in globalThis)) {
-    console.log("此浏览器不支持条形码检测器。");
-    // let DarcodeDetectorApiPolyfill = require('barcode-detector-api-polyfill');
-    barcodeDetector = new DarcodeDetectorApiPolyfill({ formats });
-} else {
-    console.log("条形码检测器是支持的！");
-    barcodeDetector = new BarcodeDetector({ formats });
-}
-
-// BarcodeDetector.getSupportedFormats().then(supportedFormats => {
-//     console.log(supportedFormats);
-// });
+const barcodeFormats = ref([]);
+BarcodeDetector.getSupportedFormats().then(formats => {
+  console.log(JSON.stringify(formats));
+  barcodeFormats.value = formats;
+  barcodeDetector = new BarcodeDetector({formats});
+});
 
 function barcodeDetectorVideo() {
     barcodeDetector.detect(video).then((barcodes) => {
@@ -109,6 +102,9 @@ function barcodeDetectorVideo() {
         <var-button block type="success" @click="scanCode('environment')">backScanCode</var-button>
         <var-button block type="info" @click="scanCode('user')">frontScanCode</var-button>
         <var-button block type="danger" @click="cancelScanCode">cancelScanCode</var-button>
+    </var-card>
+    <var-card title="BarcodeFormat">
+      <var-chip v-for="item in barcodeFormats">{{ item }}</var-chip>
     </var-card>
     <var-card title="Torch">
         <var-button block type="success" @click="openTorch">openTorch</var-button>
