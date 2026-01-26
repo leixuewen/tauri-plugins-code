@@ -72,7 +72,7 @@
     "cross-env": "^10",
     "unplugin-auto-import": "^20",
     "unplugin-preprocessor-directives": "^1",
-    "unplugin-vue-components": "^30",
+    "unplugin-vue-components": "^31",
     "vite": "^7",
     "vite-plugin-vue-devtools": "^8"
   }

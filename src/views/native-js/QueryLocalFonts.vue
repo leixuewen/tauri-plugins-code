@@ -14,13 +14,23 @@ function getLocalFonts() {
 <template>
   <var-card>
     <var-button block @click="getLocalFonts">getLocalFonts({{ fonts.length }})</var-button>
-    <var-card v-for="item in fonts">
-      <div style="display: flex">
-        <var-card title="family" :description="item.family"/>
-        <var-card title="fullName" :description="item.fullName"/>
-        <var-card title="postscriptName" :description="item.postscriptName"/>
-        <var-card title="style" :description="item.style"/>
-      </div>
-    </var-card>
+    <var-table scroller-height="calc(100vh - 122px)">
+      <thead style="position: sticky; top: 0">
+      <tr>
+        <th>family</th>
+        <th>fullName</th>
+        <th>postscriptName</th>
+        <th>style</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="item in fonts">
+        <td>{{ item.family }}</td>
+        <td>{{ item.fullName }}</td>
+        <td>{{ item.postscriptName }}</td>
+        <td>{{ item.style }}</td>
+      </tr>
+      </tbody>
+    </var-table>
   </var-card>
 </template>
