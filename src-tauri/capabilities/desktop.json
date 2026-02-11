@@ -9,6 +9,7 @@
     "main"
   ],
   "permissions": [
+    "pty:default",
     "centrifugo:default",
     "autostart:default",
     "screenshots:default",

@@ -87,4 +87,12 @@ export default [
             description: "Tauri plugin for Centrifugo real-time communication using tokio-centrifuge.",
         }
     },
+    {
+        path: '/pty',
+        name: "Pty",
+        component: () => import('../../views/plugins/Pty.vue'),
+        meta: {
+            description: "Pseudo Terminal (PTY) plugin for Tauri",
+        }
+    },
 ]

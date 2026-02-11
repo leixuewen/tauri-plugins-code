@@ -21,8 +21,8 @@
     "no_bundle_macos": "cross-env VITE_desktop_macos=true npm run desktop_build__no_bundle",
     "android_dev": "cross-env VITE_mobile_android=true VITE_mobile=true tauri android dev",
     "android_build": "cross-env VITE_mobile_android=true VITE_mobile=true tauri android build",
-    "android_build__apk": "cross-env VITE_mobile_android=true VITE_mobile=true tauri android build --apk true",
-    "android_build__apk__aarch64": "cross-env VITE_mobile_android=true VITE_mobile=true tauri android build --apk true --target aarch64",
+    "android_build__apk": "cross-env VITE_mobile_android=true VITE_mobile=true tauri android build --apk",
+    "android_build__apk__aarch64": "cross-env VITE_mobile_android=true VITE_mobile=true tauri android build --apk --target aarch64",
     "android_build__split_per_abi": "cross-env VITE_mobile_android=true VITE_mobile=true tauri android build --split-per-abi",
     "tauri_info": "tauri info",
     "tauri": "tauri"
@@ -55,6 +55,8 @@
     "@tauri-apps/plugin-websocket": "^2",
     "@tauri-apps/plugin-window-state": "^2",
     "@varlet/ui": "^3",
+    "@xterm/addon-fit": "^0",
+    "@xterm/xterm": "^6",
     "barcode-detector": "^3",
     "qr-scanner": "^1",
     "tauri-plugin-cache-api": "^0",
@@ -62,15 +64,16 @@
     "tauri-plugin-screenshots-api": "^2",
     "tauri-plugin-serialplugin-api": "^2",
     "tauri-plugin-system-info-api": "^2",
+    "tauri-pty": "^0",
     "vue": "^3",
-    "vue-router": "^4"
+    "vue-router": "^5"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
     "@varlet/import-resolver": "^3",
     "@vitejs/plugin-vue": "^6",
     "cross-env": "^10",
-    "unplugin-auto-import": "^20",
+    "unplugin-auto-import": "^21",
     "unplugin-preprocessor-directives": "^1",
     "unplugin-vue-components": "^31",
     "vite": "^7",
