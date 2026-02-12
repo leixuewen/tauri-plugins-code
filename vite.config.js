@@ -1,7 +1,6 @@
 import {defineConfig} from "vite";
-import components from 'unplugin-vue-components/vite'
-import autoImport from 'unplugin-auto-import/vite'
-import {VarletImportResolver} from '@varlet/import-resolver'
+import components from 'unplugin-vue-components/vite';
+import {VarletUIResolver} from 'unplugin-vue-components/resolvers';
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from 'vite-plugin-vue-devtools'
 import PreprocessorDirectives from 'unplugin-preprocessor-directives/vite'
@@ -15,10 +14,7 @@ export default defineConfig(async () => ({
         vue(),
         vueDevTools(),
         components({
-            resolvers: [VarletImportResolver()]
-        }),
-        autoImport({
-            resolvers: [VarletImportResolver({autoImport: true})]
+            resolvers: [VarletUIResolver()]
         }),
     ],
 
