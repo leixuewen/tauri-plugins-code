@@ -15,17 +15,17 @@ async function createFun() {
         await file.close();
         Snackbar.success('create bar.txt Successfully !');
     } catch (err) {
-        Snackbar.error('create Error : ' + err);
+        Snackbar.error(err);
     }
 }
 
-function mkdirFun(_path) {
+function mkdirFun(_path, _baseDir) {
     mkdir(_path, {
-        baseDir: baseDir.value
+        baseDir: _baseDir || baseDir.value
     }).then(res => {
         Snackbar.success('mkdir directories Successfully !');
     }).catch(err => {
-        Snackbar.error('mkdir Error : ' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -43,7 +43,7 @@ async function writeText() {
     }).then(res => {
         Snackbar.success('writeText Successfully !');
     }).catch(err => {
-        Snackbar.error('writeText Error : ' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -55,7 +55,7 @@ function writeBin() {
     }).then(res => {
         Snackbar.success('writeBin Successfully !');
     }).catch(err => {
-        Snackbar.error('writeBin Error : ' + err);
+        Snackbar.error(err);
     })
 }
 
@@ -65,7 +65,7 @@ function readText() {
     }).then(res => {
         Snackbar.success(res);
     }).catch(err => {
-        Snackbar.error('readTextFile Error : ' + err);
+        Snackbar.error(err);
     })
 }
 
@@ -132,7 +132,7 @@ async function openCreateNew() {
         await file.write(new TextEncoder().encode('world'));
         await file.close();
     } catch (err) {
-        Snackbar.error('writeText Error : ' + err);
+        Snackbar.error(err);
     }
 
 }
@@ -158,7 +158,7 @@ function removeFun() {
     remove('open', { baseDir: baseDir.value }).then(res => {
         Snackbar.success("remove Successfully");
     }).catch(err => {
-        Snackbar.error('remove error :' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -169,7 +169,7 @@ function copyFileFun() {
     }).then(res => {
         Snackbar.success("copyFile Successfully");
     }).catch(err => {
-        Snackbar.error('copyFile error :' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -179,7 +179,7 @@ function statFun() {
     }).then(res => {
         Snackbar.info(JSON.stringify(res));
     }).catch(err => {
-        Snackbar.error('stat error :' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -190,7 +190,7 @@ function renameFun() {
     }).then(res => {
         Snackbar.success("rename Successfully");
     }).catch(err => {
-        Snackbar.error('rename error :' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -200,7 +200,7 @@ function truncateFun() {
     }).then(res => {
         Snackbar.success("truncate 0 Successfully");
     }).catch(err => {
-        Snackbar.error('truncate error :' + err);
+        Snackbar.error(err);
     });
 
 }
@@ -219,44 +219,44 @@ async function truncateFun2() {
     Snackbar.info(data);
 }
 
-function readDirFun() {
-    readDir('', {
-        baseDir: baseDir.value
+function readDirFun(_path, _baseDir) {
+    readDir(_path, {
+        baseDir: _baseDir
     }).then(res => {
         Snackbar.info(JSON.stringify(res));
     }).catch(err => {
-        Snackbar.error('truncate error :' + err);
+        Snackbar.error(err);
     });
 }
 
-function removeDirFun() {
-    remove('dirs', {
-        baseDir: baseDir.value,
+function removeDirFun(_path, _baseDir) {
+    remove(_path, {
+        baseDir: _baseDir,
         // recursive: true, // Defaults to `false`. If set to `true`, path will be removed even if it's a non-empty directory
     }).then(res => {
         Snackbar.success("remove dirs Successfully");
     }).catch(err => {
-        Snackbar.error('remove error :' + err);
+        Snackbar.error(err);
     });
 }
 
-function existsFun() {
-    exists('dirs', {
-        baseDir: baseDir.value,
+function existsFun(_path, _baseDir) {
+    exists(_path, {
+        baseDir: _baseDir,
     }).then(res => {
-        res ? Snackbar.success("exists dirs : " + res) : Snackbar.warning("exists dirs : " + res);
+        res ? Snackbar.success(res) : Snackbar.warning(res);
     }).catch(err => {
-        Snackbar.error('exists error :' + err);
+        Snackbar.error(err);
     });
 }
 
-function statDirFun() {
-    stat('dirs', {
+function statDirFun(_path, _baseDir) {
+    stat(_path, {
         baseDir: baseDir.value,
     }).then(res => {
         Snackbar.info(JSON.stringify(res));
     }).catch(err => {
-        Snackbar.error('stat error :' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -264,14 +264,14 @@ function unwatchFn() { };
 async function watchFun() {
     unwatchFn = await watch('open',
         (event) => {
-            Snackbar.info('open event' + JSON.stringify(event));
+            Snackbar.info(JSON.stringify(event));
         },
         {
             baseDir: baseDir.value,
             delayMs: 500,
         }
     ).catch(err => {
-        Snackbar.error('stat error :' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -279,14 +279,14 @@ function unwatchFns() { };
 async function watchImmediateFun() {
     unwatchFns = await watchImmediate('open',
         (event) => {
-            Snackbar.info('open directory event' + JSON.stringify(event));
+            Snackbar.info(JSON.stringify(event));
         },
         {
             baseDir: baseDir.value,
             recursive: true,
         }
     ).catch(err => {
-        Snackbar.error('stat error :' + err);
+        Snackbar.error(err);
     });
 }
 
@@ -325,11 +325,11 @@ onUnmounted(() => {
         <var-button type="default" block @click="truncateFun2">truncate: $AppConfig/open</var-button>
     </var-card>
     <var-card title="Directories">
-        <var-button type="primary" block @click="mkdirFun('dirs')">mkdir: $AppConfig/dirs</var-button>
-        <var-button type="primary" block @click="readDirFun">readDir: $AppConfig/</var-button>
-        <var-button type="danger" block @click="removeDirFun">remove: $AppConfig/dirs</var-button>
-        <var-button type="info" block @click="existsFun">exists: $AppConfig/dirs</var-button>
-        <var-button type="success" block @click="statDirFun">stat: $AppConfig/dirs</var-button>
+        <var-button type="primary" block @click="mkdirFun('dirs', BaseDirectory.AppData)">mkdir: $AppData/dirs</var-button>
+        <var-button type="default" block @click="readDirFun('dirs', BaseDirectory.AppData)">readDir: $AppData/dirs</var-button>
+        <var-button type="danger" block @click="removeDirFun('dirs', BaseDirectory.AppData)">remove: $AppData/dirs</var-button>
+        <var-button type="info" block @click="existsFun('dirs', BaseDirectory.AppData)">exists: $AppData/dirs</var-button>
+        <var-button type="success" block @click="statDirFun('dirs', BaseDirectory.AppData)">stat: $AppData/dirs</var-button>
     </var-card>
     <var-card title="Watching-Changes">
         <var-button type="danger" block @click="watchFun">watch: $AppConfig/open</var-button>

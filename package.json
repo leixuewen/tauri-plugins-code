@@ -73,8 +73,8 @@
     "@vitejs/plugin-vue": "^6",
     "cross-env": "^10",
     "unplugin-preprocessor-directives": "^1",
-    "unplugin-vue-components": "^31",
-    "vite": "^7",
+    "unplugin-vue-components": "^32",
+    "vite": "^8",
     "vite-plugin-vue-devtools": "^8"
   }
 }

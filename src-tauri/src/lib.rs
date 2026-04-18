@@ -24,7 +24,7 @@ fn ipc_request(request: tauri::ipc::Request) -> String {
 }
 
 #[tauri::command]
-fn ipc_channel(channel: tauri::ipc::Channel<&str>) {
+async fn ipc_channel(channel: tauri::ipc::Channel<&str>) {
     for i in 0..9 {
         let _ = channel.send((format!("Hello, {}!", i)).as_str());
         std::thread::sleep(std::time::Duration::from_secs(1));
