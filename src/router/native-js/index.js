@@ -5,6 +5,11 @@ export default [
         component: () => import('../../views/native-js/Info.vue'),
     },
     {
+        path: '/faceapi',
+        name: "FaceApi",
+        component: () => import('../../views/native-js/FaceApi.vue'),
+    },
+    {
         path: '/geolocatons',
         name: "Geolocaton",
         component: () => import('../../views/native-js/Geolocaton.vue'),
