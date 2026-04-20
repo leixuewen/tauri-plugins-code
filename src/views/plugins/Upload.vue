@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Upload files from disk to a remote server over HTTP. Download files from a remote HTTP server to disk.",
+}}
+</route>
 <script setup>
 import {upload, download} from '@tauri-apps/plugin-upload';
 import {appLogDir, downloadDir} from '@tauri-apps/api/path';

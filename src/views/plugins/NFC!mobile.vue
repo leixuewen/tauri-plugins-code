@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Read and write NFC tags on Android and iOS.",
+}}
+</route>
 <script setup>
 import { isAvailable, scan, TechKind, write, textRecord, uriRecord } from '@tauri-apps/plugin-nfc';
 import { Snackbar } from '@varlet/ui';

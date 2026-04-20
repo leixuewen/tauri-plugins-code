@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Position your windows at well-known locations.",
+}}
+</route>
 <script setup>
 import { moveWindow, Position } from '@tauri-apps/plugin-positioner';
 import { onBeforeMount, ref } from 'vue';

@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Prompt the user for biometric authentication on Android and iOS.",
+}}
+</route>
 <script setup>
 import { checkStatus, authenticate } from '@tauri-apps/plugin-biometric';
 import { ref, onBeforeMount } from 'vue';

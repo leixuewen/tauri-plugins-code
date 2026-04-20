@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Advanced disk caching solution for Tauri applications. Provides compression, TTL management, memory caching, automatic cleanup, and cross-platform support. Enhances data access performance and storage optimization.",
+}}
+</route>
 <script setup>
 import {set, get, has, remove, clear, stats} from 'tauri-plugin-cache-api';
 import {ref} from "vue";

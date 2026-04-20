@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Haptic feedback and vibrations on Android and iOS",
+}}
+</route>
 <script setup>
 import {
     vibrate,

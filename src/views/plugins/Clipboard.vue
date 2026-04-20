@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Read and write to the system clipboard using the clipboard plugin.",
+}}
+</route>
 <script setup>
 import { writeText, readText, clear } from '@tauri-apps/plugin-clipboard-manager';
 import { Snackbar } from '@varlet/ui';

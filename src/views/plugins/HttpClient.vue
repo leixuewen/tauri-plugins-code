@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Make HTTP requests with the http plugin.",
+}}
+</route>
 <script setup>
 import { fetch } from '@tauri-apps/plugin-http';
 import { ref } from 'vue';

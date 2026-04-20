@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Access the file system.",
+}}
+</route>
 <script setup>
 import { create, writeTextFile, writeFile, readFile, watchImmediate, watch, readDir, truncate, stat, remove, rename, copyFile, readTextFileLines, mkdir, exists, open, readTextFile, BaseDirectory } from '@tauri-apps/plugin-fs';
 import { onUnmounted, ref } from 'vue';

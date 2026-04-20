@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Tauri plugin for Centrifugo real-time communication using tokio-centrifuge.",
+}}
+</route>
 <script setup>
 import {
   connect, disconnect, setToken, publish, rpc,

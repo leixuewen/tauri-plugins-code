@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Register global shortcuts.",
+}}
+</route>
 <script setup>
 import { register, unregister, unregisterAll, isRegistered } from '@tauri-apps/plugin-global-shortcut';
 import { Snackbar } from '@varlet/ui';

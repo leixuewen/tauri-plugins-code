@@ -3,7 +3,7 @@ import { StyleProvider, Themes } from '@varlet/ui';
 import { Locale } from '@varlet/ui';
 </script>
 <template>
-    <var-app-bar :title="$route.name" title-position="center">
+    <var-app-bar :title="$route.path.split('/').pop()" title-position="center">
         <template #left>
             <var-button v-if="$route.fullPath != '/'" @click="$router.back()" text-color="#fff" round text>
                 <var-icon size="32" name="chevron-left" />

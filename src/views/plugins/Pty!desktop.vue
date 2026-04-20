@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Pseudo Terminal (PTY) plugin for Tauri",
+}}
+</route>
 <script setup>
 import {Terminal} from "@xterm/xterm"
 import {FitAddon} from '@xterm/addon-fit';

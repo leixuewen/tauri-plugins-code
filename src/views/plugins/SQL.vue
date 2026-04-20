@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Plugin providing an interface for the frontend to communicate with SQL databases through sqlx. It supports the SQLite, MySQL and PostgreSQL drivers, enabled by a Cargo feature.",
+}}
+</route>
 <script setup>
 import Database from '@tauri-apps/plugin-sql';
 import {Snackbar} from '@varlet/ui';

@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "This plugin provides APIs to access the current process.",
+}}
+</route>
 <script setup>
 import { exit, relaunch } from '@tauri-apps/plugin-process';
 </script>

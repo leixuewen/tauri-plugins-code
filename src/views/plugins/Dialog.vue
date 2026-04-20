@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Native system dialogs for opening and saving files along with message dialogs.",
+}}
+</route>
 <script setup>
 import { ask, confirm, message, open, save } from '@tauri-apps/plugin-dialog';
 import { ref } from 'vue';

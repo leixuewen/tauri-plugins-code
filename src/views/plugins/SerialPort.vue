@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Access the current process of your Tauri application.",
+}}
+</route>
 <script setup>
 import {SerialPort} from "tauri-plugin-serialplugin-api";
 import {onUnmounted, ref} from "vue";

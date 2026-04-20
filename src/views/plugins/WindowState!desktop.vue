@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Save window positions and sizes and restore them when the app is reopened.",
+}}
+</route>
 <script setup>
 import {
   restoreState, restoreStateCurrent, saveWindowState, filename, StateFlags,

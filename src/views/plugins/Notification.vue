@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Send native notifications to your user using the notification plugin.",
+}}
+</route>
 <script setup>
 import {
     isPermissionGranted,

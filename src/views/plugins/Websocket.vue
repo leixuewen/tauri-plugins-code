@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Open a WebSocket connection using a Rust client in JavaScript.",
+}}
+</route>
 <script setup>
 import WebSocket from '@tauri-apps/plugin-websocket';
 import { onBeforeUnmount, ref } from 'vue';

@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "This plugin provides a persistent key-value store. This is one of many options to handle state in your application.",
+}}
+</route>
 <script setup>
 import { check } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';

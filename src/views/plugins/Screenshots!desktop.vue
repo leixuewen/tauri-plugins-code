@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Get screenshots of windows and monitors.",
+}}
+</route>
 <script setup>
 import {
   getScreenshotableWindows,

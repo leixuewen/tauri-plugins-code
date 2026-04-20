@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Automatically launch your application at system startup.",
+}}
+</route>
 <script setup>
 import { enable, isEnabled, disable } from '@tauri-apps/plugin-autostart';
 import { ref, onBeforeMount } from 'vue';

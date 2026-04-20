@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "A tauri plugin for retrieving system info",
+}}
+</route>
 <script setup>
 import {
   allSysInfo,

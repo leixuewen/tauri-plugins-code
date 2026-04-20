@@ -1,14 +1,12 @@
 <script setup>
-import plugins from '../router/plugins';
-import tauriApi from '../router/tauri-api';
-import nativeJS from '../router/native-js';
-import { onBeforeMount, onMounted, ref } from 'vue';
+import {onBeforeMount, onMounted, ref} from 'vue';
+import {routes} from 'vue-router/auto-routes';
 
 const active = ref(0);
 const tabs = ref([
-  { val: plugins, label: "plugins", icon: "home" },
-  { val: tauriApi, label: "tauriApi", icon: "magnify" },
-  { val: nativeJS, label: "nativeJS", icon: "code-json" },
+  {val: routes[1].children, label: routes[1].path.split('/').pop(), icon: "xml"},
+  {val: routes[2].children, label: routes[2].path.split('/').pop(), icon: "plus"},
+  {val: routes[3].children, label: routes[3].path.split('/').pop(), icon: "magnify"},
 ]);
 
 onBeforeMount(() => {
@@ -16,6 +14,7 @@ onBeforeMount(() => {
     active.value = parseInt(sessionStorage.__Home_active);
   }
 });
+
 function changeFun() {
   sessionStorage.__Home_active = active.value;
 }
@@ -31,6 +30,7 @@ onMounted(() => {
   });
 });
 let scroll = null;
+
 function scrollFun(e) {
   // console.log(e);
   // console.log(e.target.scrollTop);
@@ -46,16 +46,16 @@ function scrollFun(e) {
 <template>
   <var-tabs-items v-model:active="active">
     <var-tab-item class="app" v-for="tab of tabs" :class="tab.label" @scroll="scrollFun">
-      <var-cell v-for="item of tab.val" @click="$router.push(item.path)" :title="item.name"
-        :description="item.meta.description" :border="true">
+      <var-cell v-for="item of tab.val" @click="$router.push(item.name)" :title="item.path"
+                :description="item.meta ? item.meta.description : `${item.name}`" border>
         <template #extra>
-          <var-icon name="chevron-right" />
+          <var-icon name="chevron-right"/>
         </template>
       </var-cell>
     </var-tab-item>
   </var-tabs-items>
   <var-bottom-navigation v-model:active="active" @change="changeFun">
-    <var-bottom-navigation-item v-for="tab of tabs" :label="tab.label" :icon="tab.icon" />
+    <var-bottom-navigation-item v-for="tab of tabs" :label="tab.label" :icon="tab.icon"/>
   </var-bottom-navigation>
 </template>
 <style scoped>

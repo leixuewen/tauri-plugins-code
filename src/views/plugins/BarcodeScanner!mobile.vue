@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Allows your mobile application to use the camera to scan QR codes, EAN-13 and other kinds of barcodes.",
+}}
+</route>
 <script setup>
 import { scan, openAppSettings, checkPermissions, requestPermissions, cancel, Format } from '@tauri-apps/plugin-barcode-scanner';
 import { ref, onUnmounted } from "vue";

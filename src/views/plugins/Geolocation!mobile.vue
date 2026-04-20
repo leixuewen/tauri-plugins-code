@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Get and track current device positon",
+}}
+</route>
 <script setup>
 import {
     checkPermissions,

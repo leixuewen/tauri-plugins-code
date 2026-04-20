@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Tauri enables your app to have a CLI through clap, a robust command line argument parser. With a simple CLI definition in your tauri.conf.json file, you can define your interface and read its argument matches map on JavaScript and/or Rust.",
+}}
+</route>
 <script setup>
 import { getMatches } from '@tauri-apps/plugin-cli';
 import { ref } from 'vue';

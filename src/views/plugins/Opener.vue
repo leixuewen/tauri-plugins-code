@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "This plugin allows you to open files and URLs in a specified, or the default, application. It also supports “revealing” files in the system’s file explorer.",
+}}
+</route>
 <script setup>
 import { type } from '@tauri-apps/plugin-os';
 import { openUrl, openPath, revealItemInDir } from '@tauri-apps/plugin-opener';

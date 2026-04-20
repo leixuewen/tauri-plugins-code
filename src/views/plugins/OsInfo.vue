@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Read information about the operating system using the OS Information plugin.",
+}}
+</route>
 <script setup>
 import {
     eol, platform, family, version, type, arch, locale, exeExtension, hostname,

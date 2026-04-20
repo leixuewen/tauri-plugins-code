@@ -1,7 +1,12 @@
 import {createApp} from "vue";
 import App from "./App.vue";
-import router from "./router";
+import {routes} from 'vue-router/auto-routes';
+import {createRouter, createWebHistory} from 'vue-router';
 
 createApp(App)
-    .use(router)
+    .use(createRouter({history: createWebHistory(), routes,}))
     .mount('#app');
+
+// #if DEV
+console.log(routes);
+// #endif

@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Configurable logging for your Tauri app.",
+}}
+</route>
 <script setup>
 import { attachConsole, attachLogger, warn, debug, trace, info, error } from '@tauri-apps/plugin-log';
 import { onUnmounted } from 'vue';

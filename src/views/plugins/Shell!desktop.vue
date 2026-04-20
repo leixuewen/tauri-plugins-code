@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Access the system shell. Allows you to spawn child processes.",
+}}
+</route>
 <script setup>
 import { Command, Child, EventEmitter, open } from '@tauri-apps/plugin-shell';
 import { Snackbar } from '@varlet/ui';
