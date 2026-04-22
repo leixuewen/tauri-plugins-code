@@ -20,6 +20,7 @@
     "geolocation:allow-watch-position",
     "barcode-scanner:default",
     "biometric:default",
+    "pldownloader:default",
     "nfc:default"
   ]
 }

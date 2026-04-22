@@ -1,7 +1,7 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
+async fn greet(name: &str) -> Result<String, ()> {
+    Ok(format!("Hello, {}! You've been greeted from Rust!", name))
 }
 
 #[tauri::command]
@@ -88,6 +88,7 @@ pub fn run() {
                 let _ = handle.plugin(tauri_plugin_nfc::init());
                 let _ = handle.plugin(tauri_plugin_geolocation::init());
                 let _ = handle.plugin(tauri_plugin_haptics::init());
+                let _ = handle.plugin(tauri_plugin_pldownloader::init());
             }
 
             Ok(())
