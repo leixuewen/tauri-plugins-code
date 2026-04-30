@@ -55,6 +55,7 @@ export default defineConfig(async () => ({
             resolvers: [VarletUIResolver()]
         }),
     ],
+    base: "./",
     build: {emptyOutDir: true},
 
     // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`

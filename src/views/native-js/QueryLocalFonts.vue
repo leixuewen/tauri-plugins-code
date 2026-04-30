@@ -2,12 +2,12 @@
 import {ref} from "vue";
 
 const fonts = ref([]);
-getLocalFonts()
+
 function getLocalFonts() {
   window.queryLocalFonts().then(val => {
     fonts.value = val;
     console.log(val);
-  })
+  }).catch(err => console.log(err));
 }
 </script>
 

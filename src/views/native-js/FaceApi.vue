@@ -3,19 +3,20 @@ import {nets, detectAllFaces, euclideanDistance, TinyFaceDetectorOptions, detect
 import {onMounted, onUnmounted, ref} from "vue";
 import {Snackbar} from "@varlet/ui";
 
-nets.ssdMobilenetv1.loadFromUri("/face-api/models")
+let uri = "./face-api/models";
+nets.ssdMobilenetv1.loadFromUri(uri)
 // 微型人脸检测器
-nets.tinyFaceDetector.loadFromUri("/face-api/models")
+// nets.tinyFaceDetector.loadFromUri(uri)
 // 面对地标68网
-nets.faceLandmark68Net.loadFromUri("/face-api/models")
+nets.faceLandmark68Net.loadFromUri(uri)
 // 面对地标68微型网
-nets.faceLandmark68TinyNet.loadFromUri("/face-api/models")
+// nets.faceLandmark68TinyNet.loadFromUri(uri)
 // 人脸识别网
-nets.faceRecognitionNet.loadFromUri("/face-api/models")
+// nets.faceRecognitionNet.loadFromUri(uri)
 // 面部表情网
-nets.faceExpressionNet.loadFromUri("/face-api/models")
+nets.faceExpressionNet.loadFromUri(uri)
 // 年龄性别网
-nets.ageGenderNet.loadFromUri("/face-api/models")
+nets.ageGenderNet.loadFromUri(uri)
 
 let stream, interval;
 onUnmounted(() => {

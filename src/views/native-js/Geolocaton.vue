@@ -16,7 +16,8 @@ function getCurrentPositionFun() {
             position.value = success;
         },
         error => {
-            console.log(error.message);
+            Snackbar.error(error.message)
+            console.log(error);
             // alert("请在系统设置-》位置-》允许应用访问你的位置信息(开启)");
         },
     );
