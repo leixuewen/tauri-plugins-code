@@ -8,7 +8,6 @@ const loading = ref(false);
 const baseDir = BaseDirectory.AppCache;
 
 mkdir("dist/assets", {baseDir, recursive: true});
-mkdir("dist/face-api/models", {baseDir, recursive: true});
 
 function importHtml() {
   loading.value = true;

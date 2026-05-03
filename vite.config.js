@@ -48,10 +48,11 @@ function exclude() {
 export default defineConfig(async () => ({
     plugins: [
         PreprocessorDirectives(),
-        vueRouter({routesFolder: "src/views", exclude: exclude()}),
+        vueRouter({routesFolder: "src/views", exclude: exclude(), dts: false,}),
         vue(),
         vueDevTools(),
         components({
+            dts: false,
             resolvers: [VarletUIResolver()]
         }),
     ],
