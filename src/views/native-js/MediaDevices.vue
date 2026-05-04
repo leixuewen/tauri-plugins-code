@@ -12,6 +12,7 @@ onUnmounted(() => {
     if (stream1) {
         stream1.getTracks().forEach(t => t.stop());
     }
+    mediaClose();
 });
 
 let video;
@@ -76,7 +77,7 @@ function cancelScanCode() {
 let barcodeDetector;
 const barcodeFormats = ref([]);
 BarcodeDetector.getSupportedFormats().then(formats => {
-  console.log(JSON.stringify(formats));
+  // console.log(JSON.stringify(formats));
   barcodeFormats.value = formats;
   barcodeDetector = new BarcodeDetector({formats});
 });
@@ -94,11 +95,85 @@ function barcodeDetectorVideo() {
     });
 }
 
+const media = ref({
+  video: true,
+  audio: false,
+  playUrl: "",
+  recorder: undefined,
+});
+
+function mediaStart() {
+  cancelScanCode();
+  navigator.mediaDevices.getUserMedia({
+    video: media.value.video,
+    audio: media.value.audio,
+  }).then(val => {
+    stream = val;
+    video.srcObject = val;
+    let data = [], mr = new MediaRecorder(val);
+    mr.ondataavailable = ev => {
+      data.push(ev.data);
+    }
+    mr.onstop = () => {
+      if (data.length > 0) {
+        URL.revokeObjectURL(media.value.playUrl); // 清理旧数据
+        let d = new Blob(data);
+        media.value.playUrl = URL.createObjectURL(d);
+        Snackbar.info(`MediaRecorder data size ${(d.size / 1024).toFixed(2)} KB`);
+      } else {
+        Snackbar.error("MediaRecorder data is empty");
+      }
+    }
+    mr.start(1000);
+    media.value.recorder = mr;
+  }).catch((err) => {
+    console.error(err);
+    Snackbar.error(err);
+  });
+}
+
+function mediaStop() {
+  video.src = undefined;
+  if (media.value.recorder && media.value.recorder.state !== "inactive") {
+    media.value.recorder.stop();
+  }
+  cancelScanCode();
+}
+
+function mediaPlay() {
+  mediaStop();
+  setTimeout(() => {
+    if (media.value.playUrl) {
+      video.src = media.value.playUrl;
+    }
+  }, 200);
+}
+
+function mediaClose() {
+  mediaStop();
+  media.value.playUrl = "";
+  media.value.recorder = undefined;
+  URL.revokeObjectURL(media.value.playUrl);
+}
+
 </script>
 <template>
+  <var-card title="MediaRecorder">
+    <var-cell>
+      video
+      <var-switch v-model="media.video"/>
+      Audio
+      <var-switch v-model="media.audio"/>
+    </var-cell>
+    <div style="display: flex">
+      <var-button block type="success" @click="mediaStart">Start</var-button>
+      <var-button block type="warning" @click="mediaStop">Stop</var-button>
+      <var-button block type="primary" @click="mediaPlay">Play</var-button>
+      <var-button block type="danger" @click="mediaClose">Close</var-button>
+    </div>
+  </var-card>
+  <video id="ScanCodeVideo" width="100%" height="360px" playsinline autoplay poster="/src/assets/tauri.svg"/>
     <var-card title="ScanCode">
-        <video id="ScanCodeVideo" width="100%" height="360px" playsinline="true" autoplay
-            poster="/src/assets/tauri.svg"></video>
         <var-button block type="success" @click="scanCode('environment')">backScanCode</var-button>
         <var-button block type="info" @click="scanCode('user')">frontScanCode</var-button>
         <var-button block type="danger" @click="cancelScanCode">cancelScanCode</var-button>

@@ -17,49 +17,46 @@ nets.faceExpressionNet.loadFromUri()
 // 年龄性别网
 nets.ageGenderNet.loadFromUri()
 
-let stream, interval;
-onUnmounted(() => {
-  if (stream) {
-    stream.getTracks().forEach(t => t.stop());
-    clearInterval(interval);
-  }
-});
-
-let video;
-onMounted(() => {
-  video = document.getElementById('FaceApiVideo');
-});
+let video, stream;
+onMounted(() => video = document.getElementById('FaceApiVideo'));
+onUnmounted(cancelFace);
 
 const detects = ref();
 
-function scanCode(_facingMode) {
-  cancelScanCode();
+function getDetects() {
+  // console.log("getDetects getDetects getDetects");
+  detectAllFaces(video)
+      .withFaceLandmarks()    //带有面部标志
+      .withFaceExpressions()  //面部表情
+      .withAgeAndGender()     //年龄和性别
+      // .withFaceDescriptors()  //带有面部描述符
+      .then(val => {
+        detects.value = val;
+        if (video.srcObject) {
+          setTimeout(getDetects, 200);
+        }
+      })
+}
+
+function scanFace(facingMode) {
+  cancelFace();
   navigator.mediaDevices.getUserMedia({
-    video: {facingMode: _facingMode}
+    video: {facingMode}
   }).then(_stream => {
     stream = _stream;
     video.srcObject = _stream;
-    interval = setInterval(() => {
-      detectAllFaces(video)
-          .withFaceLandmarks()    //带有面部标志
-          .withFaceExpressions()  //面部表情
-          .withAgeAndGender()     //年龄和性别
-          // .withFaceDescriptors()  //带有面部描述符
-          .then(val => detects.value = val)
-    }, 200); // 每200ms处理一次；
   }).catch(error => {
     console.error(error)
     Snackbar.error(error);
   });
 }
 
-function cancelScanCode() {
+function cancelFace() {
   if (stream) {
     stream.getTracks().forEach(t => t.stop());
     stream = null;
   }
   video.srcObject = null;
-  clearInterval(interval);
 }
 
 const files = ref([]);
@@ -92,10 +89,10 @@ async function faceCompare() {
 <template>
   <var-card title="FaceApi">
     <div style="position: absolute;z-index:9;pointer-events: none">{{ detects }}</div>
-    <video id="FaceApiVideo" width="100%" height="360px" playsinline autoplay/>
-    <var-button block type="info" @click="scanCode('environment')">backFace</var-button>
-    <var-button block type="primary" @click="scanCode('user')">frontFace</var-button>
-    <var-button block type="danger" @click="cancelScanCode">cancelFace</var-button>
+    <video id="FaceApiVideo" width="100%" height="360px" playsinline autoplay @play="getDetects"/>
+    <var-button block type="info" @click="scanFace('environment')">backFace</var-button>
+    <var-button block type="primary" @click="scanFace('user')">frontFace</var-button>
+    <var-button block type="danger" @click="cancelFace">cancelFace</var-button>
   </var-card>
   <var-card title="FaceCompare">
     <var-uploader id="FaceCompare" v-model="files" :maxlength="2"/>
