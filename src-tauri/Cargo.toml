@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugins-code"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Tauri Plugins App"
 authors = ["lxw"]
 edition = "2024"

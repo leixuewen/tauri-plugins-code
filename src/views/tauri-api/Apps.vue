@@ -1,49 +1,67 @@
 <script setup>
 import {
-  defaultWindowIcon,
-  fetchDataStoreIdentifiers,
-  getBundleType,
-  getIdentifier,
   getName,
-  getTauriVersion,
   getVersion,
-  hide,
+  getTauriVersion,
+  getIdentifier,
   show,
+  hide,
+  defaultWindowIcon,
   setTheme,
-  setDockVisibility,
+  fetchDataStoreIdentifiers,
   removeDataStore,
+  setDockVisibility,
+  getBundleType,
   onBackButtonPress,
+  supportsMultipleWindows,
 } from '@tauri-apps/api/app';
 import {type, arch} from '@tauri-apps/plugin-os';
 import {openUrl} from '@tauri-apps/plugin-opener';
 import {StyleProvider, Themes} from '@varlet/ui';
-import {onBeforeMount, ref} from 'vue';
+import {onBeforeMount, onBeforeUnmount, ref} from 'vue';
 import {Snackbar, Dialog} from '@varlet/ui';
 import "@varlet/ui/es/dialog/style";
 
 const theme = ref('light');
 const app = ref({
-  defaultWindowIcon: {},
+  defaultWindowIcon: "",
   fetchDataStoreIdentifiers: [],
   getBundleType: {},
   getIdentifier: "",
   getName: "",
   getTauriVersion: "",
   getVersion: "",
+  supportsMultipleWindows: Boolean,
 });
 
+onBeforeUnmount(() => {
+  URL.revokeObjectURL(app.value.defaultWindowIcon)
+})
 onBeforeMount(() => {
-  defaultWindowIcon().then(val => {
-    app.value.defaultWindowIcon.rid = val.rid;
-    // val.rgba().then(r => app.value.defaultWindowIcon.rgba = r);
-    val.size().then(s => app.value.defaultWindowIcon.size = s);
-  });
+  defaultWindowIcon()
+      .then(val => val.rgba())
+      .then(val => {
+        // console.log(val);
+        let wh = Math.sqrt(val.length / 4);
+        let width = wh, height = wh;
+        let img = new ImageData(new Uint8ClampedArray(val), width, height);
+        let canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        let ctx = canvas.getContext("2d");
+        ctx.putImageData(img, 0, 0);
+        canvas.toBlob(v => {
+          app.value.defaultWindowIcon = URL.createObjectURL(new Blob([v], {type: "image/png"}));
+        });
+      })
+      .catch(err => Snackbar.error(err));
   fetchDataStoreIdentifiers().then(val => app.value.fetchDataStoreIdentifiers = val);
   getBundleType().then(val => app.value.getBundleType = val);
   getIdentifier().then(val => app.value.getIdentifier = val);
   getName().then(val => app.value.getName = val);
   getTauriVersion().then(val => app.value.getTauriVersion = val);
   getVersion().then(val => app.value.getVersion = val);
+  supportsMultipleWindows().then(val => app.value.supportsMultipleWindows = val);
 });
 
 function hideFun() {
@@ -111,13 +129,14 @@ function checkUpdate() {
 </script>
 <template>
   <var-card>
-    <var-cell>defaultWindowIcon : {{ app.defaultWindowIcon }}</var-cell>
+    <var-cell :icon="app.defaultWindowIcon">defaultWindowIcon : {{ app.defaultWindowIcon }}</var-cell>
     <var-cell>fetchDataStoreIdentifiers : {{ app.fetchDataStoreIdentifiers }}</var-cell>
     <var-cell>getBundleType : {{ app.getBundleType }}</var-cell>
     <var-cell>getIdentifier : {{ app.getIdentifier }}</var-cell>
     <var-cell>getName : {{ app.getName }}</var-cell>
     <var-cell>getTauriVersion : {{ app.getTauriVersion }}</var-cell>
     <var-cell>getVersion : {{ app.getVersion }}</var-cell>
+    <var-cell>supportsMultipleWindows : {{ app.supportsMultipleWindows }}</var-cell>
     // #if VITE_mobile_android
     <var-cell>
       <var-button type="success" @click="onBackButtonPressFun">onBackButtonPress</var-button>
