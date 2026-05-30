@@ -34,6 +34,7 @@ async fn ipc_channel(channel: tauri::ipc::Channel<&str>) {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_biometry::init())
         .plugin(tauri_plugin_cache::init())
         .plugin(tauri_plugin_serialplugin::init())
         .plugin(tauri_plugin_websocket::init())

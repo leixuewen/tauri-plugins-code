@@ -37,6 +37,7 @@ tauri-plugin-upload = "2"
 tauri-plugin-websocket = "2"
 tauri-plugin-serialplugin = "2"
 tauri-plugin-cache = "0"
+tauri-plugin-biometry = "0"
 
 
 [profile.dev]
