@@ -61,6 +61,7 @@
     "barcode-detector": "^3",
     "face-api.js": "^0.22.2",
     "qr-scanner": "^1",
+    "tauri-plugin-axum-api": "^0",
     "tauri-plugin-cache-api": "^0",
     "tauri-plugin-centrifugo-api": "^0",
     "tauri-plugin-pldownloader-api": "^1",

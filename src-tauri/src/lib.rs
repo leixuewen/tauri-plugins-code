@@ -34,6 +34,7 @@ async fn ipc_channel(channel: tauri::ipc::Channel<&str>) {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_axum::init(axum::router()))
         .plugin(tauri_plugin_biometry::init())
         .plugin(tauri_plugin_cache::init())
         .plugin(tauri_plugin_serialplugin::init())
@@ -101,6 +102,7 @@ pub fn run() {
         .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
+            axum::custom_usage,
             greet,
             ipc_channel,
             ipc_request,
@@ -120,3 +122,4 @@ pub fn migration_sql() -> Vec<Migration> {
         kind: MigrationKind::Up,
     }]
 }
+mod axum;

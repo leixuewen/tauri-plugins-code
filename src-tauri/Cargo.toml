@@ -38,7 +38,9 @@ tauri-plugin-websocket = "2"
 tauri-plugin-serialplugin = "2"
 tauri-plugin-cache = "0"
 tauri-plugin-biometry = "0"
-
+tauri-plugin-axum = "0"
+axum = "0"
+futures = "0"
 
 [profile.dev]
 incremental = true # 以较小的步骤编译您的二进制文件。

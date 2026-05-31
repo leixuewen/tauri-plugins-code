@@ -6,6 +6,7 @@
     "main"
   ],
   "permissions": [
+    "axum:default",
     "biometry:default",
     "cache:default",
     "core:default",
