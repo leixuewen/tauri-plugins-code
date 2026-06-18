@@ -1,7 +1,6 @@
 <route>
 {meta: {
-description: "A Tauri v2 plugin for biometric authentication (Touch ID, Face ID, fingerprint) on Android, macOS, iOS and
-Windows.",
+description: "A Tauri v2 plugin for biometric authentication (Touch ID, Face ID, fingerprint) on Android, macOS, iOS and Windows.",
 }}
 </route>
 <script setup>

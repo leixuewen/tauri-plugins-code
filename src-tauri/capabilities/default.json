@@ -6,6 +6,7 @@
     "main"
   ],
   "permissions": [
+    "vnidrop-fs:all",
     "axum:default",
     "biometry:default",
     "cache:default",

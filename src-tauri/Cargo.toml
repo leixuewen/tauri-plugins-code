@@ -26,6 +26,7 @@ tauri-plugin-os = "2"
 tauri-plugin-clipboard-manager = "2"
 tauri-plugin-dialog = "2"
 tauri-plugin-fs = { version = "2", features = ["watch"] }
+tauri-plugin-vnidrop-fs = "0"
 tauri-plugin-http = "2"
 tauri-plugin-log = "2"
 tauri-plugin-notification = "2"
