@@ -1,3 +1,8 @@
+<route>
+{meta: {
+description: "Cross-platform filesystem manager for Tauri with Android SAF and iOS document picker support.",
+}}
+</route>
 <script setup>
 import {
   isDesktop,

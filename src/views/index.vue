@@ -7,6 +7,7 @@ const tabs = ref([
   {val: routes[1].children, label: routes[1].path.split('/').pop(), icon: "xml"},
   {val: routes[2].children, label: routes[2].path.split('/').pop(), icon: "plus"},
   {val: routes[3].children, label: routes[3].path.split('/').pop(), icon: "magnify"},
+  {val: routes[4].children, label: routes[4].path.split('/').pop(), icon: "shopping-outline"},
 ]);
 
 onBeforeMount(() => {
