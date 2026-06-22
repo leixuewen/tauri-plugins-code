@@ -60,7 +60,7 @@
     "@xterm/addon-fit": "^0",
     "@xterm/xterm": "^6",
     "barcode-detector": "^3",
-    "face-api.js": "^0.22.2",
+    "face-api.js": "^0",
     "qr-scanner": "^1",
     "tauri-plugin-axum-api": "^0",
     "tauri-plugin-cache-api": "^0",

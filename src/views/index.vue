@@ -3,14 +3,18 @@ import {onBeforeMount, onMounted, ref} from 'vue';
 import {routes} from 'vue-router/auto-routes';
 
 const active = ref(0);
-const tabs = ref([
-  {val: routes[1].children, label: routes[1].path.split('/').pop(), icon: "xml"},
-  {val: routes[2].children, label: routes[2].path.split('/').pop(), icon: "plus"},
-  {val: routes[3].children, label: routes[3].path.split('/').pop(), icon: "magnify"},
-  {val: routes[4].children, label: routes[4].path.split('/').pop(), icon: "shopping-outline"},
-]);
+const tabs = ref([]);
+const icons = ['xml', 'plus', 'magnify', 'shopping-outline'];
 
 onBeforeMount(() => {
+  routes.forEach((route, index) => {
+    if (index === 0) return
+    tabs.value.push({
+      val: route.children,
+      label: route.path.split('/').pop(),
+      icon: icons[index - 1],
+    });
+  })
   if (sessionStorage.__Home_active) {
     active.value = parseInt(sessionStorage.__Home_active);
   }
@@ -48,7 +52,7 @@ function scrollFun(e) {
   <var-tabs-items v-model:active="active">
     <var-tab-item class="app" v-for="tab of tabs" :class="tab.label" @scroll="scrollFun">
       <var-cell v-for="item of tab.val" @click="$router.push(item.name)" :title="item.path"
-                :description="item.meta ? item.meta.description : `${item.name}`" border>
+                :description="item.meta?.description || item.name" border>
         <template #extra>
           <var-icon name="chevron-right"/>
         </template>
