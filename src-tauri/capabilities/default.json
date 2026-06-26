@@ -5,12 +5,16 @@
   "windows": [
     "main"
   ],
+  "remote" : {
+    "urls": ["http://asset.localhost/*","asset://localhost/*"]
+  },
   "permissions": [
     "vnidrop-fs:all",
     "axum:default",
     "biometry:default",
     "cache:default",
     "core:default",
+    "core:window:allow-close",
     "core:window:allow-hide",
     "core:window:allow-show",
     "core:window:allow-destroy",

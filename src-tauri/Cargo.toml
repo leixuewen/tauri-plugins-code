@@ -43,6 +43,7 @@ tauri-plugin-axum = "0"
 axum = "0"
 futures = "0"
 image = "0"
+zip = "8"
 
 [profile.dev]
 incremental = true # 以较小的步骤编译您的二进制文件。

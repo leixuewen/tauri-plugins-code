@@ -31,6 +31,19 @@ async fn ipc_channel(channel: tauri::ipc::Channel<&str>) {
     }
 }
 
+#[tauri::command]
+async fn asset_localhost(data: Vec<u8>, target_path: &str) -> Result<tauri::ipc::Response, String> {
+    let reader = std::io::Cursor::new(data);
+    let archive = zip::ZipArchive::new(reader);
+    if let Ok(mut zip) = archive {
+        let rest = zip.extract(target_path);
+        if let Err(e) = rest {
+            return Err(format!("{}", e))
+        }
+    }
+    Ok(tauri::ipc::Response::new(vec![]))
+}
+
 use std::error::Error;
 
 pub fn result<T>(result: Result<T, Box<dyn Error>>) -> Result<T, String> {
@@ -168,6 +181,7 @@ pub fn run() {
             face_id_analyzer,
             axum::custom_usage,
             greet,
+            asset_localhost,
             ipc_channel,
             ipc_request,
             app_handle,

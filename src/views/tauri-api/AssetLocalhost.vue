@@ -1,29 +1,31 @@
 <script setup>
 import {ref} from "vue";
 import {Snackbar} from '@varlet/ui';
-import {mkdir, remove, writeFile} from "@tauri-apps/plugin-fs";
-import {appCacheDir, BaseDirectory, join} from "@tauri-apps/api/path";
+import {mkdir, remove} from "@tauri-apps/plugin-fs";
+import {appCacheDir, join} from "@tauri-apps/api/path";
+import {invoke} from "@tauri-apps/api/core";
 
 const loading = ref(false);
-const baseDir = BaseDirectory.AppCache;
 
-mkdir("dist/assets", {baseDir, recursive: true});
+let targetPath;
+appCacheDir().then(val => join(val, "dist")).then(val => {
+  targetPath = val;
+  mkdir(val);
+})
 
 function importHtml() {
   loading.value = true;
   let el = document.createElement("input");
   el.type = "file";
   el.hidden = true;
-  el.webkitdirectory = true;
-  el.onchange = e => {
-    for (let file of e.target.files) {
-      writeFile(file.webkitRelativePath, file.stream(), {baseDir})
-      // console.log(file);
-    }
+  el.accept = ".zip";
+  el.onchange = async e => {
+    let data = await e.target.files[0].arrayBuffer();
+    await invoke("asset_localhost", {data, targetPath});
     document.body.removeChild(el);
     loading.value = false;
   }
-  el.oncancel = e => {
+  el.oncancel = () => {
     document.body.removeChild(el);
     loading.value = false;
   }
@@ -32,15 +34,17 @@ function importHtml() {
 }
 
 function accessHtml() {
-  appCacheDir().then(val => {
-    return join(val, 'dist', "index.html");
-  }).then(html => {
+  join(targetPath, "index.html").then(html => {
+    // #if VITE_desktop_windows || VITE_mobile_android
     window.location.href = `http://asset.localhost/${html}`;
+    // #else
+    window.location.href = `asset://localhost/${html}`;
+    // #endif
   }).catch(err => Snackbar.error(err))
 }
 
 function delectHtml() {
-  remove('dist', {baseDir, recursive: true});
+  remove(targetPath, {recursive: true});
   window.location.reload();
 }
 </script>
