@@ -49,8 +49,8 @@ function scrollFun(e) {
 </script>
 
 <template>
-  <var-tabs-items v-model:active="active">
-    <var-tab-item class="app" v-for="tab of tabs" :class="tab.label" @scroll="scrollFun">
+  <var-tabs-items style="margin-bottom: 50px" v-model:active="active">
+    <var-tab-item v-for="tab of tabs" :class="tab.label" @scroll="scrollFun">
       <var-cell v-for="item of tab.val" @click="$router.push(item.name)" :title="item.path"
                 :description="item.meta?.description || item.name" border>
         <template #extra>
@@ -59,15 +59,7 @@ function scrollFun(e) {
       </var-cell>
     </var-tab-item>
   </var-tabs-items>
-  <var-bottom-navigation v-model:active="active" @change="changeFun">
+  <var-bottom-navigation fixed v-model:active="active" @change="changeFun">
     <var-bottom-navigation-item v-for="tab of tabs" :label="tab.label" :icon="tab.icon"/>
   </var-bottom-navigation>
 </template>
-<style scoped>
-.app {
-  height: calc(100vh - 104px);
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-</style>

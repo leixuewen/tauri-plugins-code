@@ -2,20 +2,9 @@
 import {nets, detectAllFaces, euclideanDistance, TinyFaceDetectorOptions, detectSingleFace} from 'face-api.js';
 import {onMounted, onUnmounted, ref} from "vue";
 import {Snackbar} from "@varlet/ui";
+import {appCacheDir, join} from "@tauri-apps/api/path";
+import {mkdir, readDir, writeFile, writeTextFile} from "@tauri-apps/plugin-fs";
 
-nets.ssdMobilenetv1.loadFromUri()
-// 微型人脸检测器
-// nets.tinyFaceDetector.loadFromUri()
-// 面对地标68网
-nets.faceLandmark68Net.loadFromUri()
-// 面对地标68微型网
-// nets.faceLandmark68TinyNet.loadFromUri()
-// 人脸识别网
-// nets.faceRecognitionNet.loadFromUri()
-// 面部表情网
-nets.faceExpressionNet.loadFromUri()
-// 年龄性别网
-nets.ageGenderNet.loadFromUri()
 
 let video, stream;
 onMounted(() => video = document.getElementById('FaceApiVideo'));
@@ -84,10 +73,90 @@ async function faceCompare() {
 
   alert(`FaceCompare => score:${(1 - rest).toFixed(4)}, distance:${rest.toFixed(4)}`);
 }
+
+let dir;
+appCacheDir().then(v => join(v, "face-api.js")).then(v => {
+  dir = v;
+  console.log(v);
+  return mkdir(v, {recursive: true})
+}).then(async () => {
+  let list = await readDir(dir);
+  if (list.length <= 0) {
+    await downloadFaceData()
+  }
+  loadFaceData()
+}).catch(err => Snackbar.error(err));
+
+async function downloadFaceData() {
+  Snackbar.loading("face-api.js nets downloading...");
+  let uri = "https://gh.llkk.cc/https://github.com/justadudewhohacks/face-api.js-models/blob/master/";
+  let _ext = "_model-weights_manifest.json";
+  return Promise.all(
+      [
+        'age_gender_model',
+        'face_expression',
+        'face_landmark_68',
+        'face_landmark_68_tiny',
+        'face_recognition',
+        'mtcnn',
+        'ssd_mobilenetv1',
+        'tiny_face_detector',
+        'tiny_yolov2',
+        'tiny_yolov2_separable_conv',
+        // 'proto',
+        // 'uncompressed',
+      ].map(async m => {
+            let _m = m.replace('_model', '');
+            let data = await (await fetch(`${uri}${m}/${_m}${_ext}`)).json();
+            await writeTextFile(`${dir}/${_m}${_ext}`, JSON.stringify(data))
+            for (let path of data[0].paths) {
+              await writeFile(`${dir}/${path}`, await (await fetch(`${uri}${m}/${path}`)).bytes());
+            }
+          }
+      )
+  ).then(() => Snackbar.success("face-api.js nets downloaded"))
+      .catch(err => Snackbar.error(err))
+}
+
+function loadFaceData() {
+  if (sessionStorage.getItem(location.href)) return;
+  Snackbar.loading("face-api.js nets loading...")
+  let uri =
+// #if VITE_desktop_windows || VITE_mobile_android
+      `http://asset.localhost/${dir}`
+// #elif VITE_desktop_linux || VITE_desktop_macos || VITE_mobile_ios
+      `asset://localhost/${dir}`
+// #endif
+  Promise.all([
+    nets.ssdMobilenetv1.loadFromUri(uri),
+// 微型人脸检测器
+// nets.tinyFaceDetector.loadFromUri(uri),
+// nets.tinyYolov2.loadFromUri(uri),
+// nets.mtcnn.loadFromUri(uri),
+// 面对地标68网
+    nets.faceLandmark68Net.loadFromUri(uri),
+// 面对地标68微型网
+// nets.faceLandmark68TinyNet.loadFromUri(uri),
+// 人脸识别网
+// nets.faceRecognitionNet.loadFromUri(uri),
+// 面部表情网
+    nets.faceExpressionNet.loadFromUri(uri),
+// 年龄性别网
+    nets.ageGenderNet.loadFromUri(uri),
+  ]).then(() => {
+    sessionStorage.setItem(location.href, 1);
+    Snackbar.success("face-api.js nets loaded")
+  }).catch(err => Snackbar.error(err))
+}
+
 </script>
 
 <template>
   <var-card title="FaceApi">
+    <var-button style="position: absolute; top: 9px; right:0" type="danger"
+                @click="downloadFaceData" text>
+      重新下载模型
+    </var-button>
     <div style="position: absolute;z-index:9;pointer-events: none">{{ detects }}</div>
     <video id="FaceApiVideo" width="100%" height="360px" playsinline autoplay @play="getDetects"/>
     <var-button block type="info" @click="scanFace('environment')">backFace</var-button>

@@ -1,16 +1,23 @@
 <script setup>
 import AppBar from './components/AppBar.vue';
 import "@varlet/ui/es/snackbar/style";
+
+const top =
+// #if VITE_mobile
+    `36px`
+// #else
+    `0px`
+// #endif
 </script>
 <template>
-  <AppBar/>
-  <var-paper radius="0" id="var-paper">
+  <var-paper radius="0" id="var-paper" :style="{paddingTop: `calc(54px + ${top})`}">
+    <AppBar :style="{paddingTop: top}"/>
     <RouterView/>
   </var-paper>
 </template>
 <style>
 #var-paper {
-  height: calc(100vh - 54px);
+  height: 100vh;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
