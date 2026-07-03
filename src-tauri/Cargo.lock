@@ -7666,6 +7666,7 @@ dependencies = [
  "face_id",
  "futures",
  "image",
+ "log",
  "serde",
  "serde_json",
  "tauri",

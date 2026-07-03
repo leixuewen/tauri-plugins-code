@@ -25,6 +25,7 @@ onBeforeMount(() => {
         if (val.length === 0) {
           return Promise.reject("No found face models");
         }
+        Snackbar.loading("face_id loading...")
         // 初始化模型对象
         return invoke("face_id_init", {models: val.map(m => `${path.value}${sep()}${m.name}`)})
       }).then(() => Snackbar.success("face_id init models success"))
@@ -109,6 +110,25 @@ function cleanModel() {
     console.log(val);
   })
 }
+
+const ONNX = [
+  {
+    id: 'RuteNL/SCRFD-face-detection-ONNX',
+    file: '34g_gnkps.onnx',
+    name: 'det_model.onnx',
+  },
+  {
+    id: 'public-data/insightface',
+    file: 'models/buffalo_l/w600k_r50.onnx',
+    name: 'rec_model.onnx',
+  },
+  {
+    id: 'public-data/insightface',
+    file: 'models/buffalo_l/genderage.onnx',
+    name: 'attr_model.onnx',
+  },
+]
+
 </script>
 
 <template>
@@ -120,10 +140,15 @@ function cleanModel() {
     <var-button block type="warning" @click="close">close camera</var-button>
   </var-card>
   <var-card title="local models (.onnx)">
-    <var-button v-for="item in ['det_model.onnx', 'rec_model.onnx', 'attr_model.onnx']"
+    <var-button v-for="item in ONNX.map(m => m.name)"
                 @click="importModels(item)" block type="primary">
       {{ item }} {{ modelsFiles.find(f => f.name === item) }}
     </var-button>
     <var-button block type="danger" @dblclick="remove(path, {recursive: true})">clean model</var-button>
+  </var-card>
+  <var-card>
+    <a v-for="item in ONNX" :href="`https://huggingface.co/${item.id}/resolve/main/${item.file}`" target="_blank">
+      <var-button block>{{ item.name }}@{{ item.file }}</var-button>
+    </a>
   </var-card>
 </template>

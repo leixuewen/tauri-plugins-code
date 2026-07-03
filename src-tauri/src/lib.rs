@@ -44,65 +44,6 @@ async fn asset_localhost(data: Vec<u8>, target_path: &str) -> Result<tauri::ipc:
     Ok(tauri::ipc::Response::new(vec![]))
 }
 
-use std::error::Error;
-
-pub fn result<T>(result: Result<T, Box<dyn Error>>) -> Result<T, String> {
-    match result {
-        Ok(val) => Ok(val),
-        Err(err) => Err(err.to_string()),
-    }
-}
-
-#[cfg(desktop)]
-static mut FACE: Option<face_id::analyzer::FaceAnalyzer> = None;
-
-#[cfg(desktop)]
-fn get_face() -> Result<&'static mut face_id::analyzer::FaceAnalyzer, String> {
-    unsafe {
-        match FACE {
-            Some(ref mut face) => Ok(face),
-            None => Err("not init face".into()),
-        }
-    }
-}
-
-#[cfg(desktop)]
-#[tauri::command]
-async fn face_id_init(models: Vec<&str>) -> Result<tauri::ipc::Response, String> {
-    log::info!("initializing face_id");
-    log::debug!("models: {:?}", models);
-    if models.len() != 3 {
-        return Err(format!("expected 3 models: {:?}", models));
-    }
-    if get_face().is_ok() {
-        log::info!("face_id initialized");
-        return Ok(tauri::ipc::Response::new(vec![]));
-    }
-    let rest = face_id::analyzer::FaceAnalyzer::builder(models[1], models[2], models[0]).build();
-    match rest {
-        Ok(res) => {
-            unsafe { FACE = Some(res) }
-            Ok(tauri::ipc::Response::new(vec![]))
-        }
-        Err(e) => Err(format!("{:?}", e)),
-    }
-}
-
-#[cfg(desktop)]
-fn face_id_analyzer_run(
-    buffer: Vec<u8>,
-) -> Result<Vec<face_id::analyzer::FaceAnalysis>, Box<dyn Error>> {
-    let face = get_face()?;
-    let img = image::load_from_memory(buffer.as_slice())?;
-    Ok(face.analyze(&img)?)
-}
-
-#[cfg(desktop)]
-#[tauri::command]
-async fn face_id_analyzer(buffer: Vec<u8>) -> Result<Vec<face_id::analyzer::FaceAnalysis>, String> {
-    result(face_id_analyzer_run(buffer))
-}
-
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -176,9 +117,9 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             #[cfg(desktop)]
-            face_id_init,
+            face_id::face_id_init,
             #[cfg(desktop)]
-            face_id_analyzer,
+            face_id::face_id_analyzer,
             axum::custom_usage,
             greet,
             asset_localhost,
@@ -202,3 +143,15 @@ pub fn migration_sql() -> Vec<Migration> {
     }]
 }
 mod axum;
+#[cfg(desktop)]
+mod face_id;
+
+pub fn try_result<F, T>(f: F) -> Result<T, String>
+where
+    F: FnOnce() -> Result<T, Box<dyn std::error::Error>>,
+{
+    f().map_err(|e| {
+        log::error!("{:?}", e);
+        e.to_string()
+    })
+}

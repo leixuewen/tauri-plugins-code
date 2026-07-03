@@ -62,9 +62,10 @@ function speechSynthesis() {
   let voices = synth.getVoices();
   console.log(voices);
   let content = randomChineseGBK(99);
-  Snackbar({type: "success", content, duration: 9000,});
   let utterThis = new SpeechSynthesisUtterance(content);
-  utterThis.voice = voices[Math.floor(Math.random() * voices.length)]; // 设置语音[随机取数]
+  let voice = voices[Math.floor(Math.random() * voices.length)]; // 设置语音[随机取数]
+  Snackbar.info({content: `${voice.name}: ${content}`, duration: 9000,});
+  utterThis.voice = voice;
   synth.speak(utterThis);
 }
 
