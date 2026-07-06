@@ -105,6 +105,10 @@ pub fn run() {
                 let _ = handle.plugin(tauri_plugin_haptics::init());
                 let _ = handle.plugin(tauri_plugin_pldownloader::init());
             }
+            #[cfg(target_os = "android")]
+            {
+                let _ = handle.plugin(tauri_plugin_app_control::init());
+            }
 
             Ok(())
         })

@@ -77,3 +77,6 @@ tauri-plugin-nfc = "2"
 tauri-plugin-geolocation = "2"
 tauri-plugin-haptics = "2"
 tauri-plugin-pldownloader = "1"
+
+[target.'cfg(any(target_os = "android"))'.dependencies]
+tauri-plugin-app-control = "0"
