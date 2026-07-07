@@ -1,6 +1,7 @@
 <script setup>
 import {onBeforeMount, onMounted, ref} from 'vue';
 import {routes} from 'vue-router/auto-routes';
+import {statusbar} from '../const.js';
 
 const active = ref(0);
 const tabs = ref([]);
@@ -15,42 +16,37 @@ onBeforeMount(() => {
       icon: icons[index - 1],
     });
   })
-  if (sessionStorage.__Home_active) {
-    active.value = parseInt(sessionStorage.__Home_active);
-  }
+  active.value = parseInt(sessionStorage.getItem('__Home_active') || '0');
 });
 
 function changeFun() {
-  sessionStorage.__Home_active = active.value;
+  sessionStorage.setItem('__Home_active', active.value);
 }
 
 onMounted(() => {
-  tabs.value.forEach(v => {
-    let top = sessionStorage['__Home_scrollTop_' + v.label];
+  tabs.value.forEach((v, i) => {
+    let top = sessionStorage.getItem('__Home_scrollTop_' + i);
     if (top) {
-      // console.log(v.label, top);
-      // console.log(document.getElementsByClassName("app " + v.label)[0]);
-      document.getElementsByClassName("app " + v.label)[0].scrollTo(0, parseInt(top));
+      document.querySelector(`.${v.label}`).scrollTo(0, top);
     }
   });
 });
+
 let scroll = null;
 
-function scrollFun(e) {
-  // console.log(e);
+function _scroll(e) {
   // console.log(e.target.scrollTop);
-  // console.log(e.target.classList[3]);
   if (scroll) clearTimeout(scroll);
   scroll = setTimeout(() => {
-    // console.log(e.target.scrollTop, e.target.classList[3]);
-    sessionStorage['__Home_scrollTop_' + e.target.classList[3]] = e.target.scrollTop;
+    sessionStorage.setItem('__Home_scrollTop_' + active.value, e.target.scrollTop);
   }, 200);
 }
 </script>
 
 <template>
-  <var-tabs-items style="margin-bottom: 50px" v-model:active="active">
-    <var-tab-item v-for="tab of tabs" :class="tab.label" @scroll="scrollFun">
+  <var-tabs-items v-model:active="active">
+    <var-tab-item v-for="tab of tabs" :class="tab.label" @scroll="_scroll"
+                  :style="{overflow: 'auto', height: `calc(100vh - ${statusbar} - 54px - 50px)`}">
       <var-cell v-for="item of tab.val" @click="$router.push(item.name)" :title="item.path"
                 :description="item.meta?.description || item.name" border>
         <template #extra>

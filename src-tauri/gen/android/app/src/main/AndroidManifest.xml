@@ -31,14 +31,6 @@
                 <!-- AndroidTV support -->
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-            <!-- SERIAL PLUGIN. AUTO-GENERATED. DO NOT REMOVE. -->
-            <intent-filter>
-                        <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-                    </intent-filter>
-                    <meta-data
-                        android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                        android:resource="@xml/device_filter" />
-            <!-- SERIAL PLUGIN. AUTO-GENERATED. DO NOT REMOVE. -->
             <!-- NFC PLUGIN. AUTO-GENERATED. DO NOT REMOVE. -->
             <intent-filter>
               <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -59,6 +51,14 @@
               android:name="android.nfc.action.TECH_DISCOVERED"
               android:resource="@xml/nfc_tech_filter" />
             <!-- NFC PLUGIN. AUTO-GENERATED. DO NOT REMOVE. -->
+            <!-- SERIAL PLUGIN. AUTO-GENERATED. DO NOT REMOVE. -->
+            <intent-filter>
+                        <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                    </intent-filter>
+                    <meta-data
+                        android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                        android:resource="@xml/device_filter" />
+            <!-- SERIAL PLUGIN. AUTO-GENERATED. DO NOT REMOVE. -->
         </activity>
 
         <provider

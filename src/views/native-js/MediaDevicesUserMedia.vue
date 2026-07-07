@@ -31,6 +31,10 @@ function openTorch() {
         torch(stream, true);
         return;
     }
+    if (stream1) {
+      torch(stream1, true);
+      return;
+    }
     navigator.mediaDevices.getUserMedia({
         video: { facingMode: "environment" }
     }).then(_stream => {
@@ -45,7 +49,8 @@ function openTorch() {
 function closeTorch() {
     if (stream) {
         torch(stream, false);
-    } else if (stream1) {
+    }
+    if (stream1) {
         stream1.getTracks().forEach(t => t.stop());
         stream1 = null;
     }
